@@ -19,6 +19,7 @@ console.log(products);
     <main>
       <h1>Products</h1>
       <div>{products.map((product) => <h2 key={product.id}>{product.title} - {product.category?.name}</h2>)}</div>
+      <p>nefarious sabotage</p>
     </main>
   );
 }
