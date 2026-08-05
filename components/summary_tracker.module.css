@@ -15,12 +15,14 @@
 
 .stats{
     display: flex;
+    justify-content: space-between;
     flex-direction: row;
     gap: 1.5rem;
 }
 
 .stat-card{
-    width: 290px;
+    min-width: 200px;
+    max-width: 200px;
     height: 100px;
 
     display: flex;
