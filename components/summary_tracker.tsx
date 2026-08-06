@@ -2,14 +2,11 @@ import styles from "@/components/summary_tracker.module.css";
 
 export default function Summary_tracker() {
   return (
-    // === naked html ============================================================================================================
-
     <section className={styles.stats}>
       <div className={styles["stat-card"]}>
         <div className={styles["stat-info"]}>
           <p className={styles.label}>Products</p>
           <p className={`${styles.counter} text-[#615fff]`}>193</p>
-          
         </div>
         <div className="text-red-500">ICO</div>
       </div>
