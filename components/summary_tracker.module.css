@@ -1,18 +1,3 @@
-/* .display {
-    flex:auto;
-    flex-direction: row;
-    justify-content: space-between;
-    background-color: rgb(109, 109, 109);
-    width:50px;
-}
-
-.dataview{
-    flex:auto;
-    flex-direction: row;
-    color: red;
-} */
-
-
 .stats{
     display: flex;
     justify-content: space-between;
@@ -25,10 +10,6 @@
     max-width: 200px;
     height: 100px;
 
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-
     padding: 1.5rem;
 
     background: #fff;
@@ -38,7 +19,8 @@
 
 .stat-info{
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    justify-content: space-between;
     gap: 0.4rem;
 }
 
