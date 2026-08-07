@@ -1,5 +1,5 @@
 import type { ProductsResponse } from "./types";
-import ProductHeader from "./components/ProductHeader";
+import ProductHeader from "@/components/ProductHeader";
 
 const API_URL = "http://localhost:4000";
 const defaultLimit = "6";
