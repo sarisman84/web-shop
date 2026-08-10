@@ -1,5 +1,7 @@
 import type { ProductsResponse } from "./types";
-import ProductHeader from "@/components/ProductHeader";
+import ProductHeader from "@/components/product-header/ProductHeader";
+import ProductWizard from "@/components/product-wizard/ProductWizard";
+import useEventHandler from "@/hooks/useEventHandler";
 
 const API_URL = "http://localhost:4000";
 const defaultLimit = "6";
@@ -21,6 +23,8 @@ export default async function Home() {
   ).then((res) => res.json());
 
   console.log(products);
+
+  
 
   return (
     <main>
