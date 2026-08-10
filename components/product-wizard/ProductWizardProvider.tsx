@@ -1,3 +1,4 @@
+"use client";
 import { createContext, useContext, useState } from "react";
 
 type _ModalContextType = {
@@ -6,28 +7,42 @@ type _ModalContextType = {
   closeModal: () => void;
 };
 
-const ModalContext = createContext<_ModalContextType | undefined>(undefined);
+const ProductWizardContext = createContext<_ModalContextType | undefined>(
+  undefined,
+);
 
-export function ModalProvider({ children }: { children: React.ReactNode }) {
+export function ProductWizardProvider({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <ModalContext.Provider
+    <ProductWizardContext.Provider
       value={{
         isOpen,
-        openModal: () => setIsOpen(true),
-        closeModal: () => setIsOpen(false),
+        openModal: () => {
+          console.log("Opening modal");
+          setIsOpen(true);
+        },
+        closeModal: () => {
+          console.log("Closing modal");
+          setIsOpen(false);
+        },
       }}
     >
       {children}
-    </ModalContext.Provider>
+    </ProductWizardContext.Provider>
   );
 }
 
-export function useModal() {
-  const context = useContext(ModalContext);
+export function useProductWizardDialog() {
+  const context = useContext(ProductWizardContext);
   if (!context) {
-    throw new Error("useModal must be used within a ModalProvider");
+    throw new Error(
+      "useProductWizardDialog must be used within a ProductWizardProvider",
+    );
   }
   return context;
 }

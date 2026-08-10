@@ -1,0 +1,6 @@
+.panel {
+  display: grid;
+  grid-template-columns: 1fr;
+  max-width: 30rem;
+  min-height: 15rem;
+}
