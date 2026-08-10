@@ -4,3 +4,16 @@
   max-width: 30rem;
   min-height: 15rem;
 }
+
+.form {
+    display: grid;
+}
+
+.label {
+    display: flex;
+    gap: 0.25rem;
+}
+
+.input {
+    flex: 1;
+}
