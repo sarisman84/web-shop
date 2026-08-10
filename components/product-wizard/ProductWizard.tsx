@@ -10,10 +10,11 @@ import { ProductWizardProps } from "./ProductWizard.type";
 export default function ProductWizard({
   productWizardState,
 }: ProductWizardProps) {
+  const [isOpen, setIsOpen] = productWizardState;
   return (
     <Dialog
-      open={productWizardState[0]}
-      onClose={() => productWizardState[1](false)}
+      open={isOpen}
+      onClose={() => setIsOpen(false)}
       className="relative z-50"
     >
       <div className="fixed inset-0 flex w-screen items-center justify-center p-4">
@@ -27,10 +28,8 @@ export default function ProductWizard({
             will be permanently removed.
           </p>
           <div className="flex gap-4">
-            <button onClick={() => productWizardState[1](false)}>Cancel</button>
-            <button onClick={() => productWizardState[1](false)}>
-              Deactivate
-            </button>
+            <button onClick={() => setIsOpen(false)}>Cancel</button>
+            <button onClick={() => setIsOpen(false)}>Deactivate</button>
           </div>
         </DialogPanel>
       </div>

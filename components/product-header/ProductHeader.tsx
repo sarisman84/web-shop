@@ -1,6 +1,10 @@
 import styles from "./ProductHeader.module.css";
+import { ProductHeaderProps } from "./ProductHeader.type";
 
-export default function ProductHeader() {
+export default function ProductHeader({
+  productWizardState,
+}: ProductHeaderProps) {
+  const [_, setIsOpen] = productWizardState;
   return (
     <header className={styles.header}>
       <div>
@@ -11,7 +15,11 @@ export default function ProductHeader() {
         </p>
       </div>
 
-      <button className={styles.button} type="button">
+      <button
+        className={styles.button}
+        type="button"
+        onClick={() => setIsOpen(true)}
+      >
         + Add Product
       </button>
     </header>
