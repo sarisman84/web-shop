@@ -1,9 +1,10 @@
+import { ProductWizardState } from "@/components/product-wizard/ProductWizard.type";
 import { useState } from "react";
 
 export default function useEventHandler() {
-  const productWizardState = useState(false);
+  const state: ProductWizardState = useState(false);
 
   return {
-    productWizardState,
+    productWizardState: state,
   };
 }
