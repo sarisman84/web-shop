@@ -1,5 +1,4 @@
 <!-- omit in toc -->
-
 # Group 4's Web-Shop Admin panel
 
 [![License: CC0-1.0](https://img.shields.io/badge/License-CC0_1.0-lightgrey.svg)](http://creativecommons.org/publicdomain/zero/1.0/)
@@ -11,31 +10,28 @@ This is group 4's admin panel for our web-shop project. The project is built wit
 ![Final Result](.readme/preview/image.png)
 
 <!-- omit in toc -->
-
 ## Table of Contents
 
-- [Group 4's Web-Shop Admin panel](#group-4s-web-shop-admin-panel)
-  - [Table of Contents](#table-of-contents)
-  - [Features](#features)
-  - [Project Information](#project-information)
-    - [Dependencies](#dependencies)
-  - [Getting Started](#getting-started)
-  - [Running the Project](#running-the-project)
-  - [JSON Server Setup](#json-server-setup)
-    - [Configuration](#configuration)
-    - [Scripts](#scripts)
-  - [API Endpoints](#api-endpoints)
-    - [Resources](#resources)
-    - [Create Product](#create-product)
-    - [Pagination \& Sorting (json-server 0.17.4)](#pagination--sorting-json-server-0174)
-      - [Pagination](#pagination)
-      - [Sorting](#sorting)
-      - [Filtering](#filtering)
-  - [Learn More](#learn-more)
-  - [Credits](#credits)
-    - [Luisa Marquez Alvarez](#luisa-marquez-alvarez)
-    - [Dmitry Alexanderson](#dmitry-alexanderson)
-    - [Patrik Idén](#patrik-idén)
+- [Features](#features)
+- [Project Information](#project-information)
+  - [Dependencies](#dependencies)
+- [Getting Started](#getting-started)
+- [Running the Project](#running-the-project)
+- [JSON Server Setup](#json-server-setup)
+  - [Configuration](#configuration)
+  - [Scripts](#scripts)
+- [API Endpoints](#api-endpoints)
+  - [Resources](#resources)
+  - [Create Product](#create-product)
+  - [Pagination \& Sorting (json-server 0.17.4)](#pagination--sorting-json-server-0174)
+    - [Pagination](#pagination)
+    - [Sorting](#sorting)
+    - [Filtering](#filtering)
+- [Learn More](#learn-more)
+- [Credits](#credits)
+  - [Luisa Marquez Alvarez](#luisa-marquez-alvarez)
+  - [Dmitry Alexanderson](#dmitry-alexanderson)
+  - [Patrik Idén](#patrik-idén)
 
 ## Features
 
