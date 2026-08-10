@@ -1,8 +1,5 @@
 import ProductHeader from "@/components/product-header/ProductHeader";
 import useEventHandler from "@/hooks/useEventHandler";
-import requestProductsAsync from "@/server/product-request";
-import { emptyResponse } from "@/server/product-request.type";
-import { useEffect } from "react";
 
 const API_URL = "http://localhost:4000";
 const defaultLimit = "6";
@@ -14,15 +11,7 @@ export default function Home() {
   // We can use the other destructured variables like page, total and so on to create pagination later
 
   const { productWizardState, productsResponseState } = useEventHandler();
-  const [currentResponse, setCurrentResponse] = productsResponseState;
-
-  useEffect(() => {
-    requestProductsAsync((result) => {
-      if (result !== emptyResponse) {
-        setCurrentResponse(result);
-      }
-    });
-  }, [setCurrentResponse]);
+  const [currentResponse, _] = productsResponseState;
 
   return (
     <main>

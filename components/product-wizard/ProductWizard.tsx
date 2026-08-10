@@ -5,16 +5,14 @@ import {
   DialogPanel,
   DialogTitle,
 } from "@headlessui/react";
-import { ProductWizardProps } from "./ProductWizard.type";
+import { useModal } from "./ProductWizardProvider";
 
-export default function ProductWizard({
-  productWizardState,
-}: ProductWizardProps) {
-  const [isOpen, setIsOpen] = productWizardState;
+export default function ProductWizard() {
+  const ctx = useModal();
   return (
     <Dialog
-      open={isOpen}
-      onClose={() => setIsOpen(false)}
+      open={ctx.isOpen}
+      onClose={() => ctx.closeModal()}
       className="relative z-50"
     >
       <div className="fixed inset-0 flex w-screen items-center justify-center p-4">
@@ -28,8 +26,8 @@ export default function ProductWizard({
             will be permanently removed.
           </p>
           <div className="flex gap-4">
-            <button onClick={() => setIsOpen(false)}>Cancel</button>
-            <button onClick={() => setIsOpen(false)}>Deactivate</button>
+            <button onClick={() => ctx.closeModal()}>Cancel</button>
+            <button onClick={() => ctx.closeModal()}>Deactivate</button>
           </div>
         </DialogPanel>
       </div>

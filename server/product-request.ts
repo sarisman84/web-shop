@@ -4,10 +4,9 @@ import { ProductsResponse } from "@/app/types";
 import { emptyResponse } from "./product-request.type";
 
 export default async function requestProductsAsync(
-  out: (value: ProductsResponse) => void,
   defaultLimit: number = 6,
   apiUrl: string = "http://localhost:4000",
-) {
+): Promise<ProductsResponse> {
   //   result = await fetch(
   //     `${apiUrl}/products/?_limit=${defaultLimit}&_sort=id&_order=desc&_expand=category`,
   //   ).then((res) => res.json());
@@ -16,10 +15,8 @@ export default async function requestProductsAsync(
     `${apiUrl}/products/?_limit=${defaultLimit}&_sort=id&_order=desc&_expand=category`,
   );
   if (!response.ok) {
-    out(emptyResponse);
-    return false;
+    return emptyResponse;
   }
 
-  out(await response.json());
-  return true;
+  return await response.json();
 }
