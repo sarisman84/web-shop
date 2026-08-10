@@ -29,9 +29,6 @@ This is group 4's admin panel for our web-shop project. The project is built wit
     - [Filtering](#filtering)
 - [Learn More](#learn-more)
 - [Credits](#credits)
-  - [Luisa Marquez Alvarez](#luisa-marquez-alvarez)
-  - [Dmitry Alexanderson](#dmitry-alexanderson)
-  - [Patrik Idén](#patrik-idén)
 
 ## Features
 
@@ -176,16 +173,19 @@ To learn more about Next.js, take a look at the following resources:
 
 ## Credits
 
+<!-- omit in toc -->
 ### Luisa Marquez Alvarez
 
 - Github: [@luisafmarquez](https://github.com/luisafmarquez)
 - LinkedIn:
 
+<!-- omit in toc -->
 ### Dmitry Alexanderson
 
 - Github: [@dkalexanderson](https://github.com/dkalexanderson)
 - LinkedIn
 
+<!-- omit in toc -->
 ### Patrik Idén
 
 - Github: [@patrikiden-dev](https://github.com/patrikiden-dev)
