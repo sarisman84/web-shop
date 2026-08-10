@@ -1,9 +1,38 @@
+[![License: CC0-1.0](https://img.shields.io/badge/License-CC0_1.0-lightgrey.svg)](http://creativecommons.org/publicdomain/zero/1.0/)
+
 # Group 4's Web-Shop Admin panel
 This is group 4's admin panel for our web-shop project. The project is built with Next.js and uses json-server to mock a backend API made by the Lexicon Staff.
 
-![Final Result](image.png)
+![Final Result](.readme/preview/image.png)
 
-# About the project
+## Table of Contents
+
+- [Group 4's Web-Shop Admin panel](#group-4s-web-shop-admin-panel)
+  - [Table of Contents](#table-of-contents)
+- [Features](#features)
+- [Project Information](#project-information)
+  - [Getting Started](#getting-started)
+  - [JSON Server Setup](#json-server-setup)
+    - [Configuration](#configuration)
+    - [Scripts](#scripts)
+  - [API Endpoints](#api-endpoints)
+    - [Resources](#resources)
+    - [Create Product](#create-product)
+    - [Pagination \& Sorting (json-server 0.17.4)](#pagination--sorting-json-server-0174)
+      - [Pagination](#pagination)
+      - [Sorting](#sorting)
+      - [Filtering](#filtering)
+  - [Learn More](#learn-more)
+
+# Features
+
+The following features are planned for this website:
+
+- Inventory Tracker for quickly glancing the current status of a shop's inventory
+- A simple list of products with different columns, indicating various amounts of information for each product as well as page pagination.
+- Adding new products to the database with a form wizard.
+
+# Project Information
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 This project uses [json-server](https://github.com/typicode/json-server/tree/v0.17.4) to mock a backend API.
