@@ -1,6 +1,8 @@
 # Group 4's Web-Shop Admin panel
 This is group 4's admin panel for our web-shop project. The project is built with Next.js and uses json-server to mock a backend API made by the Lexicon Staff.
 
+![Final Result](image.png)
+
 # About the project
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
