@@ -1,3 +1,5 @@
+<!-- omit in toc -->
+
 # Group 4's Web-Shop Admin panel
 
 [![License: CC0-1.0](https://img.shields.io/badge/License-CC0_1.0-lightgrey.svg)](http://creativecommons.org/publicdomain/zero/1.0/)
@@ -7,6 +9,8 @@
 This is group 4's admin panel for our web-shop project. The project is built with Next.js and uses json-server to mock a backend API made by the Lexicon Staff.
 
 ![Final Result](.readme/preview/image.png)
+
+<!-- omit in toc -->
 
 ## Table of Contents
 
