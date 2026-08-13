@@ -6,10 +6,8 @@ export type DropdownOption = {
 export interface DropdownProps {
   displayName: string;
   options: DropdownOption[];
-  value: {
-    currentValue: number;
-    setCurrentValue: (value: number) => void;
-  };
-  selectedOption?: (options: DropdownOption[]) => DropdownOption;
+
+  currentValue: number;
+  setCurrentValue: (value: number) => void;
   name?: string;
 }

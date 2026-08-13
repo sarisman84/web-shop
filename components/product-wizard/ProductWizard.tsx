@@ -17,6 +17,7 @@ import { useProductWizardDialog } from "./ProductWizardProvider";
 import style from "./ProductWizard.module.css";
 import useProductWizardSetup from "./hooks/useProductWizard";
 import { CategoryPickerProps } from "./productWizard.type";
+import Dropdown from "@/utils/components/dropdown/Dropdown";
 
 export default function ProductWizard() {
   const dialog = useProductWizardDialog();
@@ -92,11 +93,20 @@ export default function ProductWizard() {
                 forms.setFormData((prev) => ({ ...prev, thumbnail: value }))
               }
             />
-            <CategoryPicker
+            <Dropdown
+              name="categoryId"
+              displayName="Category"
+              options={api.categories.map((category) => {
+                return { value: category.id, name: category.name};
+              })}
+              currentValue={forms.currentCategory}
+              setCurrentValue={forms.setCurrentCategory}
+            />
+            {/* <CategoryPicker
               categories={api.categories}
               currentCategory={forms.currentCategory}
               setCurrentCategory={forms.setCurrentCategory}
-            />
+            /> */}
             <div className={`flex pt-5 gap-5 justify-self-center font-bold`}>
               <button type="submit" onClick={() => dialog.closeModal()}>
                 Create

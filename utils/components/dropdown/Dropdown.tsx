@@ -9,18 +9,18 @@ import {
 import { DropdownProps } from "./Dropdown.props";
 
 export default function Dropdown(props: DropdownProps) {
-  const { displayName, options, value, selectedOption } = props;
-  const getOption = selectedOption ?? ((options) => options[value.currentValue]); 
+  const { displayName, options, currentValue, setCurrentValue } = props;
   return (
     <Field>
       <Label>{displayName}</Label>
       <Listbox
         name={props.name}
-        value={value.currentValue}
-        onChange={value.setCurrentValue}
+        value={currentValue}
+        onChange={setCurrentValue}
       >
         <ListboxButton className="bg-slate-200 dark:bg-slate-600  hover:bg-slate-300 dark:hover:bg-slate-700 px-2 py-1 rounded">
-          {getOption(options).name}
+          {options.find((o) => o.value === currentValue)?.name ??
+            "Select Option"}
         </ListboxButton>
         <ListboxOptions
           anchor="bottom start"
