@@ -155,14 +155,16 @@ function CategoryPicker(props: CategoryPickerProps) {
     "Select a category";
 
   return (
-    <Field className={`${style.field}`}>
-      <Label>Category</Label>
+    <Field className="flex w-full">
+      <Label className="align-middle self-center w-32 text-sm font-medium">Category</Label>
       <Listbox
         name="categoryId"
         value={currentCategory}
         onChange={setCurrentCategory}
       >
-        <ListboxButton>{categoryPreview}</ListboxButton>
+        <ListboxButton className="bg-slate-200 dark:bg-slate-600  hover:bg-slate-300 dark:hover:bg-slate-700 px-2 py-1 rounded">
+          {categoryPreview}
+        </ListboxButton>
         <ListboxOptions
           anchor="bottom start"
           className="bg-slate-100 dark:bg-slate-800 border-slate-800 dark:border-slate-100 border rounded h-40"
