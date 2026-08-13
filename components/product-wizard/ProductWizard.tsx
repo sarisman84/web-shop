@@ -123,7 +123,11 @@ function TextInputField(props: TextInputFieldProps) {
   const { displayLabel, name, type, value, textArea } = props;
   return (
     <Field className={`${style.field} ${textArea ? style["field--full"] : ""}`}>
-      <Label className={`${style.label} ${textArea ? style["label--full"] : ""}`}>{displayLabel}</Label>
+      <Label
+        className={`${style.label} ${textArea ? style["label--full"] : ""}`}
+      >
+        {displayLabel}
+      </Label>
       {textArea ? (
         <Textarea
           className={`${style.input} ${style.textarea}`}
@@ -146,6 +150,9 @@ function TextInputField(props: TextInputFieldProps) {
 
 function CategoryPicker(props: CategoryPickerProps) {
   const { categories, currentCategory, setCurrentCategory } = props;
+  const categoryPreview =
+    categories.find((category) => category.id === currentCategory)?.name ||
+    "Select a category";
 
   return (
     <Field className={`${style.field}`}>
@@ -155,12 +162,17 @@ function CategoryPicker(props: CategoryPickerProps) {
         value={currentCategory}
         onChange={setCurrentCategory}
       >
-        <ListboxButton>
-          {categories[currentCategory]?.name || "Select a category"}
-        </ListboxButton>
-        <ListboxOptions anchor="bottom start">
+        <ListboxButton>{categoryPreview}</ListboxButton>
+        <ListboxOptions
+          anchor="bottom start"
+          className="bg-slate-100 dark:bg-slate-800 border-slate-800 dark:border-slate-100 border rounded h-40"
+        >
           {categories.map((category) => (
-            <ListboxOption key={category.id} value={category.id}>
+            <ListboxOption
+              key={category.id}
+              value={category.id}
+              className="hover:bg-slate-400 dark:hover:bg-slate-600 px-5 py-1"
+            >
               {category.name}
             </ListboxOption>
           ))}
