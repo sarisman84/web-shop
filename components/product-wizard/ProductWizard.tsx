@@ -4,63 +4,28 @@ import {
   Dialog,
   DialogPanel,
   DialogTitle,
+  Field,
+  Input,
+  Label,
+  Listbox,
+  ListboxButton,
+  ListboxOption,
+  ListboxOptions,
+  Textarea,
 } from "@headlessui/react";
 import { useProductWizardDialog } from "./ProductWizardProvider";
 import style from "./ProductWizard.module.css";
-import { ChangeEvent, JSX, ReactNode, useState } from "react";
-
-interface _FormArgs {
-  title: string;
-  description: string;
-  price: string;
-  thumbnail: string;
-  category: number;
-  brand: string;
-}
-
-interface _FormFieldProps {
-  fieldName: string;
-  value: string | number;
-  onChange: (e: ChangeEvent<HTMLInputElement>) => void;
-}
-
-function _FormField({
-  fieldName,
-  value,
-  onChange,
-}: _FormFieldProps): JSX.Element {
-  const inputName = fieldName.toLowerCase().replace(/\s+/g, "-");
-  return (
-    <label className={`${style.label}`}>
-      {fieldName}
-      <input
-        className={`${style.input} border rounded px-2 py-1`}
-        name={`${inputName}`}
-        type={`${value === "number" ? "number" : "text"}`}
-        value={value}
-        onChange={onChange}
-        required
-      />
-    </label>
-  );
-}
+import useProductWizardSetup from "./hooks/useProductWizard";
+import { CategoryPickerProps } from "./productWizard.type";
 
 export default function ProductWizard() {
-  const ctx = useProductWizardDialog();
-
-  const [formData, setFormData] = useState<_FormArgs>({
-    title: "",
-    description: "",
-    price: "",
-    thumbnail: "",
-    category: -1,
-    brand: "",
-  });
+  const dialog = useProductWizardDialog();
+  const { forms, api } = useProductWizardSetup();
 
   return (
     <Dialog
-      open={ctx.isOpen}
-      onClose={() => ctx.closeModal()}
+      open={dialog.isOpen}
+      onClose={() => dialog.closeModal()}
       className="relative z-50"
     >
       <div className="fixed inset-0 flex w-screen items-center justify-center p-4 backdrop-blur">
@@ -76,61 +41,131 @@ export default function ProductWizard() {
             Add a new product to your inventory by filling out the form below.
             Make sure to provide accurate information for each field.
           </Description>
-          <form className={`${style.form} gap-1 pt-2`}>
-            <_FormField
-              fieldName={"Product Name"}
-              value={formData.title}
-              onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                setFormData({ ...formData, title: e.target.value })
+          <form
+            className={`${style.form} gap-1 pt-2`}
+            action="/products"
+            method="POST"
+          >
+            <TextInputField
+              displayLabel="Product Name"
+              name="title"
+              value={forms.formData.title}
+              onValueChanged={(value) =>
+                forms.setFormData((prev) => ({ ...prev, title: value }))
               }
             />
-            <_FormField
-              fieldName="Description"
-              value={formData.description}
-              onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                setFormData({ ...formData, description: e.target.value })
+
+            <TextInputField
+              displayLabel="Product Description"
+              textArea={true}
+              name="description"
+              value={forms.formData.description}
+              onValueChanged={(value) =>
+                forms.setFormData((prev) => ({ ...prev, description: value }))
               }
             />
-            <_FormField
-              fieldName="Price"
-              value={formData.price}
-              onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                setFormData({ ...formData, price: e.target.value })
+
+            <TextInputField
+              displayLabel="Brand"
+              name="brand"
+              value={forms.formData.brand}
+              onValueChanged={(value) =>
+                forms.setFormData((prev) => ({ ...prev, brand: value }))
               }
             />
-            <_FormField
-              fieldName="Thumbnail"
-              value={formData.thumbnail}
-              onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                setFormData({ ...formData, thumbnail: e.target.value })
+
+            <TextInputField
+              displayLabel="Price"
+              name="price"
+              type="number"
+              value={forms.formData.price}
+              onValueChanged={(value) =>
+                forms.setFormData((prev) => ({ ...prev, price: value }))
               }
             />
-            <_FormField
-              fieldName="Category"
-              value={formData.category}
-              onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                setFormData({
-                  ...formData,
-                  category: parseInt(e.target.value),
-                })
+
+            <TextInputField
+              displayLabel="Thumbnail URL"
+              name="thumbnail"
+              value={forms.formData.thumbnail}
+              onValueChanged={(value) =>
+                forms.setFormData((prev) => ({ ...prev, thumbnail: value }))
               }
             />
-            <_FormField
-              fieldName="Brand"
-              value={formData.brand}
-              onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                setFormData({ ...formData, brand: e.target.value })
-              }
+            <CategoryPicker
+              categories={api.categories}
+              currentCategory={forms.currentCategory}
+              setCurrentCategory={forms.setCurrentCategory}
             />
             <div className={`flex pt-5 gap-5 justify-self-center font-bold`}>
-              <button type="submit" onClick={() => ctx.closeModal()}>
-                Save
+              <button type="submit" onClick={() => dialog.closeModal()}>
+                Create
               </button>
-              <button onClick={() => ctx.closeModal()}>Close</button>
+              <button onClick={() => dialog.closeModal()}>Cancel</button>
             </div>
           </form>
         </DialogPanel>
       </div>
     </Dialog>
+  );
+}
+
+interface TextInputFieldProps {
+  textArea?: boolean;
+  displayLabel: string;
+  name: string;
+  type?: string;
+  value: string;
+  onValueChanged?: (value: string) => void;
+}
+
+function TextInputField(props: TextInputFieldProps) {
+  const { displayLabel, name, type, value, textArea } = props;
+  return (
+    <Field className={`${style.field} ${textArea ? style["field--full"] : ""}`}>
+      <Label className={`${style.label} ${textArea ? style["label--full"] : ""}`}>{displayLabel}</Label>
+      {textArea ? (
+        <Textarea
+          className={`${style.input} ${style.textarea}`}
+          name={name}
+          value={value}
+          onChange={(e) => props.onValueChanged?.(e.target.value)}
+        />
+      ) : (
+        <Input
+          className={`${style.input}`}
+          type={type || "text"}
+          name={name}
+          value={value}
+          onChange={(e) => props.onValueChanged?.(e.target.value)}
+        />
+      )}
+    </Field>
+  );
+}
+
+function CategoryPicker(props: CategoryPickerProps) {
+  const { categories, currentCategory, setCurrentCategory } = props;
+
+  return (
+    <Field className={`${style.field}`}>
+      <Label>Category</Label>
+      <Listbox
+        name="categoryId"
+        value={currentCategory}
+        onChange={setCurrentCategory}
+      >
+        <ListboxButton>
+          {categories[currentCategory]?.name || "Select a category"}
+        </ListboxButton>
+        <ListboxOptions anchor="bottom start">
+          {categories.map((category) => (
+            <ListboxOption key={category.id} value={category.id}>
+              {category.name}
+            </ListboxOption>
+          ))}
+        </ListboxOptions>
+      </Listbox>
+    </Field>
   );
 }

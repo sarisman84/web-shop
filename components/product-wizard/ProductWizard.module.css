@@ -9,11 +9,28 @@
     display: grid;
 }
 
-.label {
+.field {
     display: flex;
-    gap: 0.25rem;
+    gap: 1rem;
+}
+
+.field--full {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
 }
 
 .input {
+    border: 0.1em solid;
+    border-radius: 0.2rem;
     flex: 1;
+
+}
+
+.label {
+   
+}
+
+.label--full {
+
 }
