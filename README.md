@@ -177,10 +177,10 @@ To learn more about Next.js, take a look at the following resources:
 ### Luisa Marquez Alvarez
 
 - Github: [@luisafmarquez](https://github.com/luisafmarquez)
-- LinkedIn:
+- LinkedIn: [Luisa Marquez Alvarez](https://www.linkedin.com/in/luisa-fernanda-85833431/)
 
 <!-- omit in toc -->
-### Dmitry Alexanderson
+### Dimitry Alexanderson
 
 - Github: [@dkalexanderson](https://github.com/dkalexanderson)
 - LinkedIn: [Dimitri Alexanderson](https://www.linkedin.com/in/d-alexanderson)
@@ -189,4 +189,4 @@ To learn more about Next.js, take a look at the following resources:
 ### Patrik Idén
 
 - Github: [@patrikiden-dev](https://github.com/patrikiden-dev)
-- LinkedIn
+- LinkedIn: [Patrik Idén](https://www.linkedin.com/in/patrikiden/) 
