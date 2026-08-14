@@ -6,12 +6,13 @@ import { ProductsResponse } from "@/app/types";
 
 const res = await fetch('http://localhost:4000/products');
 const data:ProductsResponse = await res.json();
-const inStockList = data.products.filter(product => product.availabilityStatus == "In stock")
-const lowStockList = data.products.filter(product => product.availabilityStatus == "Low stock")
+const inStockList = data.products.filter(product => product.availabilityStatus == "In Stock")
+const lowStockList = data.products.filter(product => product.availabilityStatus == "Low Stock")
 const emptyStockList = data.products.filter(product => product.availabilityStatus == "Out of Stock")
 
 // Note: once api call processing is unified, ditch above drivel and feed list lengths as func args
 export default function Summary_tracker() {
+  console.log(data.products[1].availabilityStatus)
   
   return (
     <section className={styles.stats}>
