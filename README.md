@@ -183,7 +183,7 @@ To learn more about Next.js, take a look at the following resources:
 ### Dmitry Alexanderson
 
 - Github: [@dkalexanderson](https://github.com/dkalexanderson)
-- LinkedIn
+- LinkedIn: [Dimitri Alexanderson](https://www.linkedin.com/in/d-alexanderson)
 
 <!-- omit in toc -->
 ### Patrik Idén
