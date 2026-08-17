@@ -5,4 +5,5 @@ export interface MultilineTextInputProps {
   onChange: (value: string) => void;
   placeholder?: string;
   required?: boolean;
+  invalid?: boolean;
 }

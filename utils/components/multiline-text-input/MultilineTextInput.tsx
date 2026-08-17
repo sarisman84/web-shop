@@ -10,6 +10,7 @@ export default function MultilineTextInput(props: MultilineTextInputProps) {
       placeholder={props.placeholder}
       name={props.name}
       required={props.required}
+      invalid={props.invalid}
     />
   );
 }

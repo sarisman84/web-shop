@@ -11,6 +11,7 @@ export default function TextInput(props: TextInputProps) {
       placeholder={props.placeholder}
       name={props.name}
       required={props.required}
+      invalid={props.invalid}
     />
   );
 }
