@@ -7,16 +7,11 @@ import {
   Field,
   Input,
   Label,
-  Listbox,
-  ListboxButton,
-  ListboxOption,
-  ListboxOptions,
   Textarea,
 } from "@headlessui/react";
 import { useProductWizardDialog } from "./ProductWizardProvider";
 import style from "./ProductWizard.module.css";
 import useProductWizardSetup from "./hooks/useProductWizard";
-import { CategoryPickerProps } from "./productWizard.type";
 import Dropdown from "@/utils/components/dropdown/Dropdown";
 
 export default function ProductWizard() {
@@ -104,12 +99,7 @@ export default function ProductWizard() {
                 setCurrentValue={forms.setCurrentCategory}
               />
             </Field>
-
-            {/* <CategoryPicker
-              categories={api.categories}
-              currentCategory={forms.currentCategory}
-              setCurrentCategory={forms.setCurrentCategory}
-            /> */}
+            
             <div className={`flex pt-5 gap-5 justify-self-center font-bold`}>
               <button type="submit" onClick={() => dialog.closeModal()}>
                 Create
