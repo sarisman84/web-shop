@@ -13,6 +13,8 @@ import { useProductWizardDialog } from "./ProductWizardProvider";
 import style from "./ProductWizard.module.css";
 import useProductWizardSetup from "./hooks/useProductWizard";
 import Dropdown from "@/utils/components/dropdown/Dropdown";
+import FieldEntry from "@/utils/components/field-entry/FieldEntry";
+import MultilineFieldEntry from "@/utils/components/multiline-field-entry/MultilineFieldEntry";
 
 export default function ProductWizard() {
   const dialog = useProductWizardDialog();
@@ -42,54 +44,81 @@ export default function ProductWizard() {
             action="/products"
             method="POST"
           >
-            <TextInputField
-              displayLabel="Product Name"
-              name="title"
-              value={forms.formData.title}
-              onValueChanged={(value) =>
-                forms.setFormData((prev) => ({ ...prev, title: value }))
-              }
-            />
+            <FieldEntry labelName="Product Name">
+              <Input
+                className=""
+                type="text"
+                name="title"
+                value={forms.formData.title}
+                onChange={(e) =>
+                  forms.setFormData((prev) => ({
+                    ...prev,
+                    title: e.target.value,
+                  }))
+                }
+              />
+            </FieldEntry>
 
-            <TextInputField
-              displayLabel="Product Description"
-              textArea={true}
-              name="description"
-              value={forms.formData.description}
-              onValueChanged={(value) =>
-                forms.setFormData((prev) => ({ ...prev, description: value }))
-              }
-            />
+            <MultilineFieldEntry labelName="Product Description">
+              <Textarea
+                className=""
+                name="description"
+                value={forms.formData.description}
+                onChange={(e) =>
+                  forms.setFormData((prev) => ({
+                    ...prev,
+                    description: e.target.value,
+                  }))
+                }
+              />
+            </MultilineFieldEntry>
 
-            <TextInputField
-              displayLabel="Brand"
-              name="brand"
-              value={forms.formData.brand}
-              onValueChanged={(value) =>
-                forms.setFormData((prev) => ({ ...prev, brand: value }))
-              }
-            />
+            <FieldEntry labelName="Brand">
+              <Input
+                className=""
+                type="text"
+                name="brand"
+                value={forms.formData.brand}
+                onChange={(e) =>
+                  forms.setFormData((prev) => ({
+                    ...prev,
+                    brand: e.target.value,
+                  }))
+                }
+              />
+            </FieldEntry>
 
-            <TextInputField
-              displayLabel="Price"
-              name="price"
-              type="number"
-              value={forms.formData.price}
-              onValueChanged={(value) =>
-                forms.setFormData((prev) => ({ ...prev, price: value }))
-              }
-            />
+            <FieldEntry labelName="Price">
+              <Input
+                className=""
+                type="number"
+                name="price"
+                value={forms.formData.price}
+                onChange={(e) =>
+                  forms.setFormData((prev) => ({
+                    ...prev,
+                    price: e.target.value,
+                  }))
+                }
+              />
+            </FieldEntry>
 
-            <TextInputField
-              displayLabel="Thumbnail URL"
-              name="thumbnail"
-              value={forms.formData.thumbnail}
-              onValueChanged={(value) =>
-                forms.setFormData((prev) => ({ ...prev, thumbnail: value }))
-              }
-            />
-            <Field className={`${style.field}`}>
-              <Label className={`${style.label}`}>Category</Label>
+            <FieldEntry labelName="Thumbnail URL">
+              <Input
+                className=""
+                type="text"
+                name="thumbnail"
+                value={forms.formData.thumbnail}
+                onChange={(e) =>
+                  forms.setFormData((prev) => ({
+                    ...prev,
+                    thumbnail: e.target.value,
+                  }))
+                }
+              />
+            </FieldEntry>
+
+            <FieldEntry labelName="Category">
               <Dropdown
                 name="categoryId"
                 options={api.categories.map((category) => {
@@ -98,8 +127,7 @@ export default function ProductWizard() {
                 currentValue={forms.currentCategory}
                 setCurrentValue={forms.setCurrentCategory}
               />
-            </Field>
-
+            </FieldEntry>
             <div className={`flex pt-5 gap-5 justify-self-center font-bold`}>
               <button type="submit" onClick={() => dialog.closeModal()}>
                 Create
