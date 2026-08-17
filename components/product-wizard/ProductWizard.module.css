@@ -6,31 +6,33 @@
 }
 
 .form {
-    display: grid;
+  display: grid;
 }
 
 .field {
-    display: flex;
-    gap: 1rem;
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  justify-content: stretch;
 }
 
 .field--full {
-    display: flex;
-    flex-direction: column;
-    gap: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  align-items: stretch;
 }
 
 .input {
-    border: 0.1em solid;
-    border-radius: 0.2rem;
-    flex: 1;
-
+  border: 0.1em solid;
+  border-radius: 0.2rem;
+  flex: 1;
 }
 
 .label {
-   
+  flex: 1;
 }
 
 .label--full {
-
+  flex: 0;
 }

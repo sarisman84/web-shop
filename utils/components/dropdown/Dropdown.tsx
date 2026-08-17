@@ -30,12 +30,12 @@ export default function Dropdown(props: DropdownProps) {
   const { options, currentValue, setCurrentValue } = props;
   return (
     <Listbox name={props.name} value={currentValue} onChange={setCurrentValue}>
-      <ListboxButton className="bg-slate-200 dark:bg-slate-600  hover:bg-slate-300 dark:hover:bg-slate-700 px-2 py-1 rounded">
+      <ListboxButton className="bg-slate-200 dark:bg-slate-600  hover:bg-slate-300 dark:hover:bg-slate-700 px-2 py-1 rounded flex-1">
         {options.find((o) => o.value === currentValue)?.name ?? "Select Option"}
       </ListboxButton>
       <ListboxOptions
         anchor="bottom start"
-        className="bg-slate-100 dark:bg-slate-800 border-slate-800 dark:border-slate-100 border rounded h-40"
+        className="bg-slate-100 dark:bg-slate-800 border-slate-800 dark:border-slate-100 border rounded h-40 w-(--button-width)"
       >
         {options.map((option) => (
           <ListboxOption

@@ -88,8 +88,8 @@ export default function ProductWizard() {
                 forms.setFormData((prev) => ({ ...prev, thumbnail: value }))
               }
             />
-            <Field>
-              <Label>Category</Label>
+            <Field className={`${style.field}`}>
+              <Label className={`${style.label}`}>Category</Label>
               <Dropdown
                 name="categoryId"
                 options={api.categories.map((category) => {
@@ -99,7 +99,7 @@ export default function ProductWizard() {
                 setCurrentValue={forms.setCurrentCategory}
               />
             </Field>
-            
+
             <div className={`flex pt-5 gap-5 justify-self-center font-bold`}>
               <button type="submit" onClick={() => dialog.closeModal()}>
                 Create
