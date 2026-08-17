@@ -4,10 +4,6 @@ import {
   Dialog,
   DialogPanel,
   DialogTitle,
-  Field,
-  Input,
-  Label,
-  Textarea,
 } from "@headlessui/react";
 import { useProductWizardDialog } from "./ProductWizardProvider";
 import style from "./ProductWizard.module.css";
@@ -134,52 +130,23 @@ export default function ProductWizard() {
               />
             </FieldEntry>
             <div className={`flex pt-5 gap-5 justify-self-center font-bold`}>
-              <button type="submit" onClick={() => dialog.closeModal()}>
+              <button
+                type="submit"
+                onClick={() => dialog.closeModal()}
+                className="dark:bg-slate-600 dark:hover:bg-slate-500 px-2 py-1 rounded-sm cursor-pointer"
+              >
                 Create
               </button>
-              <button onClick={() => dialog.closeModal()}>Cancel</button>
+              <button
+                onClick={() => dialog.closeModal()}
+                className="dark:bg-red-900 dark:hover:bg-red-800 px-2 py-1 rounded-sm cursor-pointer"
+              >
+                Cancel
+              </button>
             </div>
           </form>
         </DialogPanel>
       </div>
     </Dialog>
-  );
-}
-
-interface TextInputFieldProps {
-  textArea?: boolean;
-  displayLabel: string;
-  name: string;
-  type?: string;
-  value: string;
-  onValueChanged?: (value: string) => void;
-}
-
-function TextInputField(props: TextInputFieldProps) {
-  const { displayLabel, name, type, value, textArea } = props;
-  return (
-    <Field className={`${style.field} ${textArea ? style["field--full"] : ""}`}>
-      <Label
-        className={`${style.label} ${textArea ? style["label--full"] : ""}`}
-      >
-        {displayLabel}
-      </Label>
-      {textArea ? (
-        <Textarea
-          className={`${style.input} ${style.textarea}`}
-          name={name}
-          value={value}
-          onChange={(e) => props.onValueChanged?.(e.target.value)}
-        />
-      ) : (
-        <Input
-          className={`${style.input}`}
-          type={type || "text"}
-          name={name}
-          value={value}
-          onChange={(e) => props.onValueChanged?.(e.target.value)}
-        />
-      )}
-    </Field>
   );
 }

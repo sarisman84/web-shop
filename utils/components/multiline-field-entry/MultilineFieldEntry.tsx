@@ -1,3 +1,4 @@
+"use client"
 import { Field, Label } from "@headlessui/react";
 import { MultilineFieldEntryProps } from "./MultilineFieldEntry.props";
 
