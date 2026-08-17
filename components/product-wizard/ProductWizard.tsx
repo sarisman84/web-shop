@@ -15,6 +15,8 @@ import useProductWizardSetup from "./hooks/useProductWizard";
 import Dropdown from "@/utils/components/dropdown/Dropdown";
 import FieldEntry from "@/utils/components/field-entry/FieldEntry";
 import MultilineFieldEntry from "@/utils/components/multiline-field-entry/MultilineFieldEntry";
+import MultilineTextInput from "@/utils/components/multiline-text-input/MultilineTextInput";
+import TextInput from "@/utils/components/text-input/TextInput";
 
 export default function ProductWizard() {
   const dialog = useProductWizardDialog();
@@ -45,76 +47,79 @@ export default function ProductWizard() {
             method="POST"
           >
             <FieldEntry labelName="Product Name">
-              <Input
+              <TextInput
                 className=""
                 type="text"
                 name="title"
                 value={forms.formData.title}
-                onChange={(e) =>
+                onChange={(value) =>
                   forms.setFormData((prev) => ({
                     ...prev,
-                    title: e.target.value,
+                    title: value,
                   }))
                 }
+                required={true}
               />
             </FieldEntry>
 
             <MultilineFieldEntry labelName="Product Description">
-              <Textarea
+              <MultilineTextInput
                 className=""
                 name="description"
                 value={forms.formData.description}
-                onChange={(e) =>
+                onChange={(value) =>
                   forms.setFormData((prev) => ({
                     ...prev,
-                    description: e.target.value,
+                    description: value,
                   }))
                 }
               />
             </MultilineFieldEntry>
 
             <FieldEntry labelName="Brand">
-              <Input
+              <TextInput
                 className=""
                 type="text"
                 name="brand"
                 value={forms.formData.brand}
-                onChange={(e) =>
+                onChange={(value) =>
                   forms.setFormData((prev) => ({
                     ...prev,
-                    brand: e.target.value,
+                    brand: value,
                   }))
                 }
               />
             </FieldEntry>
 
             <FieldEntry labelName="Price">
-              <Input
+              <TextInput
                 className=""
                 type="number"
                 name="price"
                 value={forms.formData.price}
-                onChange={(e) =>
+                onChange={(value) =>
                   forms.setFormData((prev) => ({
                     ...prev,
-                    price: e.target.value,
+                    price: value,
                   }))
                 }
+                required={true}
               />
             </FieldEntry>
 
             <FieldEntry labelName="Thumbnail URL">
-              <Input
+              <TextInput
                 className=""
                 type="text"
                 name="thumbnail"
                 value={forms.formData.thumbnail}
-                onChange={(e) =>
+                onChange={(value) =>
                   forms.setFormData((prev) => ({
                     ...prev,
-                    thumbnail: e.target.value,
+                    thumbnail: value,
                   }))
                 }
+                required={true}
               />
             </FieldEntry>
 
