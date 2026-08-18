@@ -1,4 +1,4 @@
-import Summary_tracker from "@/components/summary_tracker";
+import SummaryTracker from "@/components/SummaryTracker";
 import type { ProductsResponse } from "./types";
 import ProductHeader from "@/components/ProductHeader";
 
@@ -28,7 +28,7 @@ export default async function Home() {
       <ProductHeader />
 
       <h1>Products</h1>
-      <Summary_tracker />
+      <SummaryTracker />
 
       <div>
         {products.length === 0 ? (

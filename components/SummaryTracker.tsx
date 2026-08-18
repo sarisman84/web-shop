@@ -1,4 +1,6 @@
-import styles from "@/components/summary_tracker.module.css";
+'use client'
+
+import styles from "@/components/SummaryTracker.module.css";
 import { Category } from "@/app/types";
 import { Product } from "@/app/types";
 import { ProductsResponse } from "@/app/types";
@@ -10,8 +12,8 @@ const inStockList = data.products.filter(product => product.availabilityStatus =
 const lowStockList = data.products.filter(product => product.availabilityStatus == "Low Stock")
 const emptyStockList = data.products.filter(product => product.availabilityStatus == "Out of Stock")
 
-// Note: once api call processing is unified, ditch above drivel and feed list lengths as func args
-export default function Summary_tracker() {
+
+export default function SummaryTracker() {
   console.log(data.products[1].availabilityStatus)
   
   return (
