@@ -2,10 +2,7 @@
 
 import { useState } from "react";
 import DeleteConfirmationDialog from "./DeleteConfirmationDialog";
-
-type DeleteProductButtonProps = {
-  productName: string;
-};
+import type { DeleteProductButtonProps } from "./DeleteProductButton.props";
 
 export default function DeleteProductButton({
   productName,
