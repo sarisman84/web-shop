@@ -1,3 +1,4 @@
+"use client";
 import styles from "./ProductHeader.module.css";
 
 export default function ProductHeader() {
