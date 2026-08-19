@@ -15,16 +15,31 @@ import MultilineFieldEntry from "@/utils/components/multiline-field-entry/Multil
 import MultilineTextInput from "@/utils/components/multiline-text-input/MultilineTextInput";
 import TextInput from "@/utils/components/text-input/TextInput";
 import { ChangeEvent, PropsWithChildren } from "react";
+import { FormArgs } from "./productWizard.type";
+import requestCreateProduct from "./server/requestCreateProduct";
 
 interface FieldEntryProps extends PropsWithChildren {
   labelName: string;
 }
 function FieldEntry(props: FieldEntryProps) {
   return (
-    <Field>
-      <Label>{props.children}</Label>
+    <Field className="flex gap-1 items-center justify-between">
+      <Label className="flex-1">{props.labelName}</Label>
+      {props.children}
     </Field>
   );
+}
+
+async function submitFormAction(formData: FormData) {
+  const data: FormArgs = {
+    title: formData.get("title") as string,
+    description: formData.get("description") as string,
+    price: formData.get("price") as string,
+    thumbnail: formData.get("thumbnail") as string,
+    categoryId: Number(formData.get("categoryId")),
+    brand: formData.get("brand") as string,
+  };
+  await requestCreateProduct(data);
 }
 
 export default function ProductWizard() {
@@ -55,62 +70,35 @@ export default function ProductWizard() {
             Add a new product to your inventory by filling out the form below.
             Make sure to provide accurate information for each field.
           </Description>
-          <form className={`grid gap-1 pt-2`}>
+          <form className={`grid gap-1 pt-2`} action={submitFormAction}>
             <FieldEntry labelName="Product Name">
-              <TextInput
-                type="text"
-                name="title"
-                value={forms.formData.title}
-                onChange={valueChanged}
-                required={true}
-              />
+              <TextInput type="text" name="title" required={true} />
             </FieldEntry>
 
             <MultilineFieldEntry labelName="Product Description">
-              <MultilineTextInput
-                name="description"
-                value={forms.formData.description}
-                onChange={valueChanged}
-              />
+              <MultilineTextInput name="description" />
             </MultilineFieldEntry>
 
             <FieldEntry labelName="Brand">
-              <TextInput
-                type="text"
-                name="brand"
-                value={forms.formData.brand}
-                onChange={valueChanged}
-              />
+              <TextInput type="text" name="brand" />
             </FieldEntry>
 
             <FieldEntry labelName="Price">
-              <TextInput
-                type="number"
-                name="price"
-                value={forms.formData.price}
-                onChange={valueChanged}
-                required={true}
-              />
+              <TextInput type="number" name="price" required={true} />
             </FieldEntry>
 
             <FieldEntry labelName="Thumbnail URL">
-              <TextInput
-                type="text"
-                name="thumbnail"
-                value={forms.formData.thumbnail}
-                onChange={valueChanged}
-                required={true}
-              />
+              <TextInput type="text" name="thumbnail" required={true} />
             </FieldEntry>
 
             <FieldEntry labelName="Category">
               <Dropdown
                 name="categoryId"
                 options={api.categories.map((category) => {
-                  return { value: category.id, name: category.name };
+                  return { id: category.id, name: category.name };
                 })}
-                currentValue={forms.currentCategory}
-                setCurrentValue={forms.setCurrentCategory}
+                index={forms.currentCategory}
+                setIndex={forms.setCurrentCategory}
               />
             </FieldEntry>
             <div className={`flex pt-5 gap-5 justify-self-center font-bold`}>
@@ -122,7 +110,6 @@ export default function ProductWizard() {
               </button>
               <button
                 type="button"
-                onClick={() => dialog.closeModal()}
                 className="dark:bg-red-900 dark:hover:bg-red-800 px-2 py-1 rounded-sm cursor-pointer"
               >
                 Cancel

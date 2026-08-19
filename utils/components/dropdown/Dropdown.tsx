@@ -1,10 +1,14 @@
+"use client";
 import {
-  Listbox,
-  ListboxButton,
-  ListboxOption,
-  ListboxOptions,
+  Combobox,
+  ComboboxButton,
+  ComboboxInput,
+  ComboboxOption,
+  ComboboxOptions,
 } from "@headlessui/react";
-import { DropdownProps } from "./Dropdown.props";
+import { DropdownOption, DropdownProps } from "./Dropdown.props";
+import { useState } from "react";
+import { CheckIcon, ChevronsUpDown } from "lucide-react";
 
 /**
  * Draws a dropdown menu with the given options.
@@ -16,35 +20,58 @@ import { DropdownProps } from "./Dropdown.props";
     <Dropdown
     name="foo"
     options={[
-        {1, "Hello"},
-        {2, "World"},
-        {3, "Foo"}
+        {"Hello"},
+        {"World"},
+        {"Foo"}
     ]}
     currentValue={currentValue}
     setCurrentValue={setCurrentValue}
     />
  */
 export default function Dropdown(props: DropdownProps) {
-  const { options, currentValue, setCurrentValue } = props;
+  const [query, setQuery] = useState("");
+  const { options, index, setIndex } = props;
+
+  const filteredOptions =
+    query === ""
+      ? options
+      : options.filter((option: DropdownOption) => {
+          return option.name.toLowerCase().includes(query.toLowerCase());
+        });
+
   return (
-    <Listbox name={props.name} value={currentValue} onChange={setCurrentValue}>
-      <ListboxButton className="bg-slate-200 dark:bg-slate-600  hover:bg-slate-300 dark:hover:bg-slate-700 px-2 py-1 rounded flex-1 cursor-pointer">
-        {options.find((o) => o.value === currentValue)?.name ?? "Select Option"}
-      </ListboxButton>
-      <ListboxOptions
+    <Combobox name={props.name} value={index} onChange={setIndex}>
+      <div className="relative mt-1 flex-1">
+        <div className="relative w-full cursor-default overflow-hidden rounded bg-slate-400 dark:bg-slate-600 text-left shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-white/75 focus-visible:ring-offset-2 focus-visible:ring-offset-teal-300 sm:text-sm">
+          <ComboboxInput
+            onChange={(event) => setQuery(event.target.value)}
+            displayValue={(option: DropdownOption) => option.name}
+            className="w-full border-none py-2 pl-3 pr-10 text-sm leading-5 focus:ring-0"
+          />
+          <ComboboxButton className="absolute inset-y-0 right-0 flex items-center cursor-pointer">
+            <ChevronsUpDown
+              className="h-5 w-5 text-gray-400"
+              aria-hidden="true"
+            />
+          </ComboboxButton>
+        </div>
+      </div>
+
+      <ComboboxOptions
         anchor="bottom start"
-        className="bg-slate-100 dark:bg-slate-800 border-slate-800 dark:border-slate-100 border rounded h-40 w-(--button-width)"
+        className="bg-slate-100 dark:bg-slate-800 border-slate-800 dark:border-slate-700 border rounded max-h-40 w-(--input-width) empty:invisible"
       >
-        {options.map((option) => (
-          <ListboxOption
-            key={option.value}
-            value={option.value}
-            className="hover:bg-slate-400 dark:hover:bg-slate-600 px-5 py-1"
+        {filteredOptions.map((option: DropdownOption) => (
+          <ComboboxOption
+            key={option.id}
+            value={option}
+            className="group flex cursor-default items-center gap-2 rounded-lg px-3 py-1.5 select-none data-focus:bg-white/10"
           >
-            {option.name}
-          </ListboxOption>
+            <CheckIcon className="invisible size-4 group-data-selected:visible" />
+            <div className="text-sm/6 ">{option.name}</div>
+          </ComboboxOption>
         ))}
-      </ListboxOptions>
-    </Listbox>
+      </ComboboxOptions>
+    </Combobox>
   );
 }

@@ -2,7 +2,7 @@
  * The type for a single option in a dropdown menu. Each option has a numeric value and a display name.
  */
 export type DropdownOption = {
-  value: number;
+  id: number;
   name: string;
 };
 
@@ -18,12 +18,12 @@ export interface DropdownProps {
   /**
    * The currently selected value in the dropdown. (Getter)
    */
-  currentValue: number;
+  index: number;
   /**
    * The function to call when the value changes. (Setter)
    * @param value The new value to set.
    */
-  setCurrentValue: (value: number) => void;
+  setIndex: (value: number | null) => void;
   /**
    * The name of the dropdown element. Used for accessibility and labeling.
    */

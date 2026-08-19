@@ -5,7 +5,7 @@ export interface FormArgs {
   description: string;
   price: string;
   thumbnail: string;
-  category: number;
+  categoryId: number;
   brand: string;
 }
 
@@ -14,5 +14,3 @@ export interface CategoryPickerProps {
   currentCategory: number;
   setCurrentCategory: (categoryId: number) => void;
 }
-
-

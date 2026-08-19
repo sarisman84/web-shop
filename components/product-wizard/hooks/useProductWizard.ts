@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { FormArgs } from "../productWizard.type";
 import { Category } from "@/app/types";
-import requestProductCategories from "../productWizard";
+import requestProductCategories from "../server/requestProductCategories";
 
 export default function useProductWizardSetup() {
   const [formData, setFormData] = useState<FormArgs>({
@@ -9,7 +9,7 @@ export default function useProductWizardSetup() {
     description: "",
     price: "",
     thumbnail: "",
-    category: 0,
+    categoryId: 0,
     brand: "",
   });
   const [categories, setCategories] = useState<Category[]>([]);
@@ -24,11 +24,13 @@ export default function useProductWizardSetup() {
 
   return {
     forms: {
+      
       formData,
       setFormData,
-      currentCategory: formData.category,
-      setCurrentCategory: (categoryId: number) => {
-        setFormData((prev) => ({ ...prev, category: categoryId }));
+      currentCategory: formData.categoryId,
+      setCurrentCategory: (categoryId: number | null) => {
+        if (!categoryId) return;
+        setFormData((prev) => ({ ...prev, categoryId: categoryId }));
       },
     },
     api: {
