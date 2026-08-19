@@ -4,19 +4,37 @@ import {
   Dialog,
   DialogPanel,
   DialogTitle,
+  Field,
+  Label,
 } from "@headlessui/react";
 import { useProductWizardDialog } from "./ProductWizardProvider";
 import style from "./ProductWizard.module.css";
 import useProductWizardSetup from "./hooks/useProductWizard";
 import Dropdown from "@/utils/components/dropdown/Dropdown";
-import FieldEntry from "@/utils/components/field-entry/FieldEntry";
 import MultilineFieldEntry from "@/utils/components/multiline-field-entry/MultilineFieldEntry";
 import MultilineTextInput from "@/utils/components/multiline-text-input/MultilineTextInput";
 import TextInput from "@/utils/components/text-input/TextInput";
+import { ChangeEvent, PropsWithChildren } from "react";
+
+interface FieldEntryProps extends PropsWithChildren {
+  labelName: string;
+}
+function FieldEntry(props: FieldEntryProps) {
+  return (
+    <Field>
+      <Label>{props.children}</Label>
+    </Field>
+  );
+}
 
 export default function ProductWizard() {
   const dialog = useProductWizardDialog();
   const { forms, api } = useProductWizardSetup();
+
+  const valueChanged = <T extends HTMLInputElement | HTMLTextAreaElement>(
+    e: ChangeEvent<T, T>,
+  ) =>
+    forms.setFormData({ ...forms.formData, [e.target.name]: e.target.value });
 
   return (
     <Dialog
@@ -37,84 +55,50 @@ export default function ProductWizard() {
             Add a new product to your inventory by filling out the form below.
             Make sure to provide accurate information for each field.
           </Description>
-          <form
-            className={`grid gap-1 pt-2`}
-            action="/products"
-            method="POST"
-          >
+          <form className={`grid gap-1 pt-2`}>
             <FieldEntry labelName="Product Name">
               <TextInput
-                className=""
                 type="text"
                 name="title"
                 value={forms.formData.title}
-                onChange={(value) =>
-                  forms.setFormData((prev) => ({
-                    ...prev,
-                    title: value,
-                  }))
-                }
+                onChange={valueChanged}
                 required={true}
               />
             </FieldEntry>
 
             <MultilineFieldEntry labelName="Product Description">
               <MultilineTextInput
-                className=""
                 name="description"
                 value={forms.formData.description}
-                onChange={(value) =>
-                  forms.setFormData((prev) => ({
-                    ...prev,
-                    description: value,
-                  }))
-                }
+                onChange={valueChanged}
               />
             </MultilineFieldEntry>
 
             <FieldEntry labelName="Brand">
               <TextInput
-                className=""
                 type="text"
                 name="brand"
                 value={forms.formData.brand}
-                onChange={(value) =>
-                  forms.setFormData((prev) => ({
-                    ...prev,
-                    brand: value,
-                  }))
-                }
+                onChange={valueChanged}
               />
             </FieldEntry>
 
             <FieldEntry labelName="Price">
               <TextInput
-                className=""
                 type="number"
                 name="price"
                 value={forms.formData.price}
-                onChange={(value) =>
-                  forms.setFormData((prev) => ({
-                    ...prev,
-                    price: value,
-                  }))
-                }
+                onChange={valueChanged}
                 required={true}
               />
             </FieldEntry>
 
             <FieldEntry labelName="Thumbnail URL">
               <TextInput
-                className=""
                 type="text"
                 name="thumbnail"
                 value={forms.formData.thumbnail}
-                onChange={(value) =>
-                  forms.setFormData((prev) => ({
-                    ...prev,
-                    thumbnail: value,
-                  }))
-                }
+                onChange={valueChanged}
                 required={true}
               />
             </FieldEntry>
