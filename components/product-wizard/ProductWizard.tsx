@@ -6,17 +6,24 @@ import {
   DialogTitle,
   Field,
   Label,
+  Transition,
 } from "@headlessui/react";
 import { useProductWizardDialog } from "./ProductWizardProvider";
 import style from "./ProductWizard.module.css";
-import useProductWizardSetup from "./hooks/useProductWizard";
 import Dropdown from "@/utils/components/dropdown/Dropdown";
 import MultilineFieldEntry from "@/utils/components/multiline-field-entry/MultilineFieldEntry";
 import MultilineTextInput from "@/utils/components/multiline-text-input/MultilineTextInput";
 import TextInput from "@/utils/components/text-input/TextInput";
-import { ChangeEvent, PropsWithChildren } from "react";
-import { FormArgs } from "./productWizard.type";
-import requestCreateProduct from "./server/requestCreateProduct";
+import {
+  ChangeEvent,
+  PropsWithChildren,
+  useActionState,
+  useEffect,
+  useState,
+} from "react";
+import { createProduct } from "./actions/createProduct";
+import { Category } from "@/app/types";
+import serverAPI from "@/server/api/serverAPI";
 
 interface FieldEntryProps extends PropsWithChildren {
   labelName: string;
@@ -30,26 +37,23 @@ function FieldEntry(props: FieldEntryProps) {
   );
 }
 
-async function submitFormAction(formData: FormData) {
-  const data: FormArgs = {
-    title: formData.get("title") as string,
-    description: formData.get("description") as string,
-    price: formData.get("price") as string,
-    thumbnail: formData.get("thumbnail") as string,
-    categoryId: Number(formData.get("categoryId")),
-    brand: formData.get("brand") as string,
-  };
-  await requestCreateProduct(data);
-}
+const initialState: { message: string; errors?: Record<string, string[]> } = {
+  message: "",
+};
 
 export default function ProductWizard() {
   const dialog = useProductWizardDialog();
-  const { forms, api } = useProductWizardSetup();
+  const [state, formAction, _] = useActionState(createProduct, initialState);
+  const [categories, setCategories] = useState<Category[]>([]);
 
-  const valueChanged = <T extends HTMLInputElement | HTMLTextAreaElement>(
-    e: ChangeEvent<T, T>,
-  ) =>
-    forms.setFormData({ ...forms.formData, [e.target.name]: e.target.value });
+  useEffect(() => {
+    async function fetchCategories() {
+      const categories = await serverAPI.getProductCategories();
+      setCategories(categories);
+    }
+
+    fetchCategories();
+  }, [setCategories]);
 
   return (
     <Dialog
@@ -70,9 +74,14 @@ export default function ProductWizard() {
             Add a new product to your inventory by filling out the form below.
             Make sure to provide accurate information for each field.
           </Description>
-          <form className={`grid gap-1 pt-2`} action={submitFormAction}>
+          <form className={`grid gap-1 pt-2`} action={formAction}>
             <FieldEntry labelName="Product Name">
-              <TextInput type="text" name="title" required={true} />
+              <TextInput
+                type="text"
+                name="title"
+                required={true}
+                invalid={state.errors?.title !== undefined}
+              />
             </FieldEntry>
 
             <MultilineFieldEntry labelName="Product Description">
@@ -84,21 +93,33 @@ export default function ProductWizard() {
             </FieldEntry>
 
             <FieldEntry labelName="Price">
-              <TextInput type="number" name="price" required={true} />
+              <TextInput
+                type="number"
+                name="price"
+                required={true}
+                invalid={state.errors?.price !== undefined}
+              />
             </FieldEntry>
 
             <FieldEntry labelName="Thumbnail URL">
-              <TextInput type="text" name="thumbnail" required={true} />
+              <TextInput
+                type="text"
+                name="thumbnail"
+                required={true}
+                invalid={state.errors?.thumbnail !== undefined}
+              />
             </FieldEntry>
 
             <FieldEntry labelName="Category">
               <Dropdown
                 name="categoryId"
-                options={api.categories.map((category) => {
-                  return { id: category.id, name: category.name };
+                options={categories.map((category) => {
+                  return {
+                    id: category.id,
+                    name: category.name,
+                  };
                 })}
-                index={forms.currentCategory}
-                setIndex={forms.setCurrentCategory}
+                invalid={state.errors?.categoryId !== undefined}
               />
             </FieldEntry>
             <div className={`flex pt-5 gap-5 justify-self-center font-bold`}>

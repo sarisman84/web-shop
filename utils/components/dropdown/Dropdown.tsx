@@ -6,31 +6,26 @@ import {
   ComboboxOption,
   ComboboxOptions,
 } from "@headlessui/react";
-import { DropdownOption, DropdownProps } from "./Dropdown.props";
 import { useState } from "react";
 import { CheckIcon, ChevronsUpDown } from "lucide-react";
 
-/**
- * Draws a dropdown menu with the given options.
- * @param props The properties for the dropdown menu.
- * @returns JSX.Element representing the dropdown menu.
- * @example
-    const [currentValue, setCurrentValue] = useState(0);
-    ...
-    <Dropdown
-    name="foo"
-    options={[
-        {"Hello"},
-        {"World"},
-        {"Foo"}
-    ]}
-    currentValue={currentValue}
-    setCurrentValue={setCurrentValue}
-    />
- */
+type DropdownOption = {
+  id: number | string;
+  name: string;
+};
+
+type DropdownProps = {
+  name?: string;
+  options: DropdownOption[];
+  selected?: DropdownOption | null;
+  onChange?: (option: DropdownOption | null) => void;
+  invalid?: boolean;
+  required?: boolean;
+};
+
 export default function Dropdown(props: DropdownProps) {
   const [query, setQuery] = useState("");
-  const { options, index, setIndex } = props;
+  const { options, selected, onChange } = props;
 
   const filteredOptions =
     query === ""
@@ -40,13 +35,19 @@ export default function Dropdown(props: DropdownProps) {
         });
 
   return (
-    <Combobox name={props.name} value={index} onChange={setIndex}>
+    <Combobox
+      name={props.name}
+      value={selected}
+      onChange={onChange}
+      invalid={props.invalid}
+    >
       <div className="relative mt-1 flex-1">
         <div className="relative w-full cursor-default overflow-hidden rounded bg-slate-400 dark:bg-slate-600 text-left shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-white/75 focus-visible:ring-offset-2 focus-visible:ring-offset-teal-300 sm:text-sm">
           <ComboboxInput
             onChange={(event) => setQuery(event.target.value)}
             displayValue={(option: DropdownOption) => option.name}
             className="w-full border-none py-2 pl-3 pr-10 text-sm leading-5 focus:ring-0"
+            required={props.required}
           />
           <ComboboxButton className="absolute inset-y-0 right-0 flex items-center cursor-pointer">
             <ChevronsUpDown
