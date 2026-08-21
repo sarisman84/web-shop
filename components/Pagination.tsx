@@ -21,11 +21,11 @@ export default function Pagination({
             >
                 &#8249;
             </button>
-
+            {/* Fix error solution: key + 'string' = combination makes it unique so Next do not complain */}
             {pages.map((page, index) =>
                     page === "..." ? (
                         <span
-                            key={index}
+                            key={index+'unique'}
                             className="px-2 text-sm text-gray-500 font-bold"
                         >
             ...

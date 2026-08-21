@@ -11,13 +11,9 @@ const API_URL = "http://localhost:4000";
 const defaultLimit = "6";
 */
 
-
-
-export function getProducts(limit = 10): Product[] {
+function getProducts(limit = 10): Product[] {
     return productsData.products.slice(0, limit);
 }
-
-
 export default async function Home() {
   // we use the fetch() method to get the products from the API
   // in this fetch we sort using _sort and _order and we limit the number of products using _limit
@@ -28,17 +24,6 @@ export default async function Home() {
     `${API_URL}/products/?_limit=${defaultLimit}&_sort=id&_order=desc&_expand=category`,
   ).then((res) => res.json());
     */
-
-
-    /*
-
-    const firstTenProducts: Product[] = data.products.slice(0, 10);
-
-    firstTenProducts.map((product) => {
-        console.log(product.title);
-    });
-    */
-
   return (
     <main className="w-full max-w-7xl mx-auto">
       <h1>Products</h1>
