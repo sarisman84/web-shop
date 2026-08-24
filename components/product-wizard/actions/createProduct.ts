@@ -12,7 +12,6 @@ export async function createProduct(
   prevState: FormState,
   formData: FormData,
 ): Promise<FormState> {
-
   const submission: CreateProductDesc = {
     title: formData.get("title") as string,
     description: formData.get("description") as string,
@@ -25,7 +24,7 @@ export async function createProduct(
   formData.forEach((value, key, parent) => {
     console.log(`${key}: ${value}`);
   });
-  
+
   if (submission.title.length < 3) {
     return {
       message: "Validation failed",
@@ -58,13 +57,7 @@ export async function createProduct(
     };
   }
 
-  const response = await serverAPI.createProduct(submission);
-  if (!response.ok) {
-    return {
-      message: `Failed to create product! ${response.statusText}`,
-      errors: { response: [response.statusText] },
-    };
-  }
+  await serverAPI.createProduct(submission);
 
   return {
     message: "Product created!",

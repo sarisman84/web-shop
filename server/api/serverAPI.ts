@@ -42,7 +42,7 @@ const serverAPI = {
       throw error;
     }
   },
-  createProduct: async function (desc: CreateProductDesc) {
+  createProduct: async function (desc: CreateProductDesc): Promise<void> {
     const method = "POST";
     const body = JSON.stringify(desc); // Ensure formArgs is properly serialized to JSON
 
