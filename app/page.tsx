@@ -2,7 +2,7 @@ import ProductHeader from "@/components/product-header/ProductHeader";
 import ProductWizard from "@/components/product-wizard/ProductWizard";
 import serverAPI from "@/server/api/serverAPI";
 import requestProductsAsync from "@/server/product-request";
-import DeleteProductButton from "@/components/DeleteProductButton";
+import DeleteProductButton from "@/components/delete-product/button/DeleteProductButton";
 import type { ProductsResponse } from "./types";
 
 const API_URL = "http://localhost:4000";
