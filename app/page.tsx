@@ -1,5 +1,5 @@
 import ProductHeader from "@/components/product-header/ProductHeader";
-import ProductWizard from "@/components/product-wizard/ProductWizard";
+import ProductWizard from "@/components/create-product/dialog/ProductWizard";
 import serverAPI from "@/server/api/serverAPI";
 import requestProductsAsync from "@/server/product-request";
 import DeleteProductButton from "@/components/delete-product/button/DeleteProductButton";

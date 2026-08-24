@@ -22,7 +22,7 @@ import {
   useEffect,
   useState,
 } from "react";
-import { createProduct } from "./actions/createProduct";
+import { createProduct } from "../../product-wizard/actions/createProduct";
 import { Category } from "@/app/types";
 import serverAPI from "@/server/api/serverAPI";
 
