@@ -1,5 +1,6 @@
 "use client";
 import {
+  CloseButton,
   Description,
   Dialog,
   DialogPanel,
@@ -51,7 +52,7 @@ export default function ProductWizard(props: ProductWizardProps) {
   //const [categories, setCategories] = useState<Category[]>([]);
 
   const { categories } = props;
-  
+
   // useEffect(() => {
   //   async function fetchCategories() {
   //     const categories = await serverAPI.getProductCategories();
@@ -129,18 +130,18 @@ export default function ProductWizard(props: ProductWizardProps) {
               />
             </FieldEntry>
             <div className={`flex pt-5 gap-5 justify-self-center font-bold`}>
-              <button
+              <CloseButton
                 type="submit"
                 className="dark:bg-slate-600 dark:hover:bg-slate-500 px-2 py-1 rounded-sm cursor-pointer"
               >
                 Create
-              </button>
-              <button
+              </CloseButton>
+              <CloseButton
                 type="button"
                 className="dark:bg-red-900 dark:hover:bg-red-800 px-2 py-1 rounded-sm cursor-pointer"
               >
                 Cancel
-              </button>
+              </CloseButton>
             </div>
           </form>
         </DialogPanel>
