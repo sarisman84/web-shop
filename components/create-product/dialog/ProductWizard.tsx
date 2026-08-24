@@ -25,6 +25,7 @@ import {
 import { createProduct } from "../actions/createProduct";
 import { Category } from "@/app/types";
 import serverAPI from "@/server/api/serverAPI";
+import CreateProductForms from "../forms/CreateProductForms";
 
 interface FieldEntryProps extends PropsWithChildren {
   labelName: string;
@@ -51,19 +52,6 @@ interface ProductWizardProps {
 
 export default function ProductWizard(props: ProductWizardProps) {
   const dialog = useProductWizardDialog();
-  const [state, formAction, _] = useActionState(createProduct, initialState);
-  //const [categories, setCategories] = useState<Category[]>([]);
-
-  const { categories } = props;
-
-  // useEffect(() => {
-  //   async function fetchCategories() {
-  //     const categories = await serverAPI.getProductCategories();
-  //     setCategories(categories);
-  //   }
-
-  //   fetchCategories();
-  // }, [setCategories]);
 
   return (
     <Dialog
@@ -84,69 +72,7 @@ export default function ProductWizard(props: ProductWizardProps) {
             Add a new product to your inventory by filling out the form below.
             Make sure to provide accurate information for each field.
           </Description>
-          <form className={`grid gap-1 pt-2`} action={formAction}>
-            <FieldEntry labelName="Product Name" htmlFor="title">
-              <TextInput
-                type="text"
-                name="title"
-                required={true}
-                invalid={state.errors?.title !== undefined}
-              />
-            </FieldEntry>
-
-            <MultilineFieldEntry labelName="Product Description">
-              <MultilineTextInput name="description" />
-            </MultilineFieldEntry>
-
-            <FieldEntry labelName="Brand" htmlFor="brand">
-              <TextInput type="text" name="brand" />
-            </FieldEntry>
-
-            <FieldEntry labelName="Price" htmlFor="price">
-              <TextInput
-                type="number"
-                name="price"
-                required={true}
-                invalid={state.errors?.price !== undefined}
-              />
-            </FieldEntry>
-
-            <FieldEntry labelName="Thumbnail URL" htmlFor="thumbnail">
-              <TextInput
-                type="text"
-                name="thumbnail"
-                required={true}
-                invalid={state.errors?.thumbnail !== undefined}
-              />
-            </FieldEntry>
-
-            <FieldEntry labelName="Category" htmlFor="categoryId">
-              <Dropdown
-                name="categoryId"
-                options={categories.map((category) => {
-                  return {
-                    id: category.id,
-                    name: category.name,
-                  };
-                })}
-                invalid={state.errors?.categoryId !== undefined}
-              />
-            </FieldEntry>
-            <div className={`flex pt-5 gap-5 justify-self-center font-bold`}>
-              <CloseButton
-                type="submit"
-                className="dark:bg-slate-600 dark:hover:bg-slate-500 px-2 py-1 rounded-sm cursor-pointer"
-              >
-                Create
-              </CloseButton>
-              <CloseButton
-                type="button"
-                className="dark:bg-red-900 dark:hover:bg-red-800 px-2 py-1 rounded-sm cursor-pointer"
-              >
-                Cancel
-              </CloseButton>
-            </div>
-          </form>
+          <CreateProductForms categories={props.categories} />
         </DialogPanel>
       </div>
     </Dialog>
