@@ -5,7 +5,7 @@ import TextInput from "@/utils/components/text-input/TextInput";
 import { CloseButton } from "@headlessui/react";
 import { useActionState } from "react";
 import { createProduct } from "../actions/createProduct";
-import FieldEntry from "./FieldEntry";
+import FieldEntry from "./field-entry/FieldEntry";
 import { CreateProductFormsProps } from "./CreateProductForms.props";
 
 const initialState: { message: string; errors?: Record<string, string[]> } = {
