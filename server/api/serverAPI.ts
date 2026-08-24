@@ -1,39 +1,66 @@
-import { Category } from "@/app/types";
+import { Category, ProductsResponse } from "@/app/types";
 import { CreateProductDesc, emptyResponse } from "./serverAPI.types";
 
 const serverAPI = {
-  apiURL: "http://localhost:4000" as const, // Use 'as const' to make it a literal type
+  fetch: async function <T>(
+    endpoint: string,
+    settings?: RequestInit,
+  ): Promise<T> {
+    try {
+      const method = `${settings ? (settings.method ?? "GET") : "GET"}`;
+      const actionMessage = method === "GET" ? "fetch data from" : "send data to";
+      const path = `http://localhost:4000${endpoint}`;
+      console.log(
+        `[${method}][Log][${endpoint}]: Attempting to ${actionMessage} ${path}  `,
+      );
+      let response;
+      if (settings) {
+        response = await fetch(path, settings);
+      } else {
+        response = await fetch(path);
+      }
+
+      if (!response.ok) {
+        //throw new Error(`Error - ${response.status}: ${response.statusText}`);
+
+        console.log(
+          `[${method}][Error/${response.status}][${endpoint}]: ${response.statusText}`,
+        );
+        return {} as T;
+      }
+
+      console.log(
+        `[${method}][Status/${response.status}][${endpoint}]: Successfully ${actionMessage} ${path}`,
+      );
+      return response.json() as T;
+    } catch (error) {
+      if (error instanceof Error) {
+        console.log("Fetch failed:", error.message);
+      } else {
+        console.log("Unknown error:", error);
+      }
+      throw error;
+    }
+  },
   createProduct: async function (desc: CreateProductDesc) {
     const method = "POST";
     const body = JSON.stringify(desc); // Ensure formArgs is properly serialized to JSON
 
-    console.log(
-      "Sending request to: %s - with contents: %s",
-      `${serverAPI.apiURL}/products`,
-      body,
-    );
-    return await fetch(`${serverAPI.apiURL}/products`, {
+    return serverAPI.fetch("/products", {
       method,
       body,
+      headers: { "Content-Type": "application/json" },
     });
   },
-  getProducts: async function (defaultLimit: number = 6) {
-    const response = await fetch(
-      `${serverAPI.apiURL}/products/?_limit=${defaultLimit}&_sort=id&_order=desc&_expand=category`,
+  getProducts: async function (
+    defaultLimit: number = 6,
+  ): Promise<ProductsResponse> {
+    return serverAPI.fetch<ProductsResponse>(
+      `/products/?_limit=${defaultLimit}&_sort=id&_order=desc&_expand=category`,
     );
-    if (!response.ok) {
-      return emptyResponse;
-    }
-
-    return await response.json();
   },
   getProductCategories: async function (): Promise<Category[]> {
-    const response = await fetch(`${serverAPI.apiURL}/categories`);
-    if (!response.ok) {
-      return [];
-    }
-
-    return await response.json();
+    return serverAPI.fetch<Category[]>(`/categories`);
   },
 };
 

@@ -41,19 +41,25 @@ const initialState: { message: string; errors?: Record<string, string[]> } = {
   message: "",
 };
 
-export default function ProductWizard() {
+interface ProductWizardProps {
+  categories: Category[];
+}
+
+export default function ProductWizard(props: ProductWizardProps) {
   const dialog = useProductWizardDialog();
   const [state, formAction, _] = useActionState(createProduct, initialState);
-  const [categories, setCategories] = useState<Category[]>([]);
+  //const [categories, setCategories] = useState<Category[]>([]);
 
-  useEffect(() => {
-    async function fetchCategories() {
-      const categories = await serverAPI.getProductCategories();
-      setCategories(categories);
-    }
+  const { categories } = props;
+  
+  // useEffect(() => {
+  //   async function fetchCategories() {
+  //     const categories = await serverAPI.getProductCategories();
+  //     setCategories(categories);
+  //   }
 
-    fetchCategories();
-  }, [setCategories]);
+  //   fetchCategories();
+  // }, [setCategories]);
 
   return (
     <Dialog

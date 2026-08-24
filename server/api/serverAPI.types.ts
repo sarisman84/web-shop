@@ -2,11 +2,11 @@ import { ProductsResponse } from "@/app/types";
 
 export interface CreateProductDesc {
   title: string;
-  description: string;
   price: number;
-  brand: string;
-  categoryId: number;
+  description: string;
   thumbnail: string;
+  categoryId: number;
+  brand: string;
 }
 
 export const emptyResponse: ProductsResponse = {

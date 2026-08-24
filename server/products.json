@@ -11803,6 +11803,62 @@
       ],
       "thumbnail": "https://cdn.dummyjson.com/product-images/womens-watches/women's-wrist-watch/thumbnail.webp",
       "categoryId": 24
+    },
+    {
+      "title": "Test 1",
+      "description": "Test 2",
+      "price": 123,
+      "brand": "Test 3",
+      "categoryId": 9,
+      "thumbnail": "https://fastly.picsum.photos/id/237/536/354.jpg?hmac=i0yVXW1ORpyCZpQ-CknuyV-jbtU7_x9EBQVhvT5aRr0",
+      "meta": {
+        "createdAt": "2026-08-21T08:02:08.260Z",
+        "updatedAt": "2026-08-21T08:02:08.260Z"
+      },
+      "id": 195,
+      "sku": "MEN-TES-TES-195"
+    },
+    {
+      "title": "Test 2",
+      "description": "Test 3",
+      "price": 123,
+      "brand": "Test 4",
+      "categoryId": 10,
+      "thumbnail": "https://picsum.photos/200",
+      "meta": {
+        "createdAt": "2026-08-21T08:06:16.888Z",
+        "updatedAt": "2026-08-21T08:06:16.888Z"
+      },
+      "id": 196,
+      "sku": "MEN-TES-TES-196"
+    },
+    {
+      "title": "Test 1",
+      "description": "Test 2",
+      "price": 123,
+      "brand": "Test 3",
+      "categoryId": 9,
+      "thumbnail": "https://fastly.picsum.photos/id/237/536/354.jpg?hmac=i0yVXW1ORpyCZpQ-CknuyV-jbtU7_x9EBQVhvT5aRr0",
+      "meta": {
+        "createdAt": "2026-08-21T11:27:00.228Z",
+        "updatedAt": "2026-08-21T11:27:00.228Z"
+      },
+      "id": 197,
+      "sku": "MEN-TES-TES-197"
+    },
+    {
+      "title": "Test 5",
+      "description": "Test 2",
+      "price": 1234,
+      "brand": "Test 4",
+      "categoryId": 2,
+      "thumbnail": "https://picsum.photos/200",
+      "meta": {
+        "createdAt": "2026-08-24T06:50:02.041Z",
+        "updatedAt": "2026-08-24T06:50:02.041Z"
+      },
+      "id": 198,
+      "sku": "FRA-TES-TES-198"
     }
   ],
   "categories": [

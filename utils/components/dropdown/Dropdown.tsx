@@ -45,7 +45,7 @@ export default function Dropdown(props: DropdownProps) {
         <div className="relative w-full cursor-default overflow-hidden rounded bg-slate-400 dark:bg-slate-600 text-left shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-white/75 focus-visible:ring-offset-2 focus-visible:ring-offset-teal-300 sm:text-sm">
           <ComboboxInput
             onChange={(event) => setQuery(event.target.value)}
-            displayValue={(option: DropdownOption) => option.name}
+            displayValue={(option: DropdownOption) => option?.name ?? ""}
             className="w-full border-none py-2 pl-3 pr-10 text-sm leading-5 focus:ring-0"
             required={props.required}
           />

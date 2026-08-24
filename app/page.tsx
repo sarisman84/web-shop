@@ -1,5 +1,6 @@
 import ProductHeader from "@/components/product-header/ProductHeader";
 import ProductWizard from "@/components/product-wizard/ProductWizard";
+import serverAPI from "@/server/api/serverAPI";
 import requestProductsAsync from "@/server/product-request";
 
 const API_URL = "http://localhost:4000";
@@ -11,10 +12,12 @@ export default async function Home() {
   // We also use _expand to get the relational category data
   // We can use the other destructured variables like page, total and so on to create pagination later
   const { products } = await requestProductsAsync();
+  const categories = await serverAPI.getProductCategories();
+  
   return (
     <main>
       <ProductHeader />
-      <ProductWizard />
+      <ProductWizard categories={categories} />
       <h1>Products</h1>
 
       <div>
