@@ -28,11 +28,14 @@ import serverAPI from "@/server/api/serverAPI";
 
 interface FieldEntryProps extends PropsWithChildren {
   labelName: string;
+  htmlFor: string;
 }
 function FieldEntry(props: FieldEntryProps) {
   return (
     <Field className="flex gap-1 items-center justify-between">
-      <Label className="flex-1">{props.labelName}</Label>
+      <Label className="flex-1" htmlFor={props.htmlFor}>
+        {props.labelName}
+      </Label>
       {props.children}
     </Field>
   );
@@ -82,7 +85,7 @@ export default function ProductWizard(props: ProductWizardProps) {
             Make sure to provide accurate information for each field.
           </Description>
           <form className={`grid gap-1 pt-2`} action={formAction}>
-            <FieldEntry labelName="Product Name">
+            <FieldEntry labelName="Product Name" htmlFor="title">
               <TextInput
                 type="text"
                 name="title"
@@ -95,11 +98,11 @@ export default function ProductWizard(props: ProductWizardProps) {
               <MultilineTextInput name="description" />
             </MultilineFieldEntry>
 
-            <FieldEntry labelName="Brand">
+            <FieldEntry labelName="Brand" htmlFor="brand">
               <TextInput type="text" name="brand" />
             </FieldEntry>
 
-            <FieldEntry labelName="Price">
+            <FieldEntry labelName="Price" htmlFor="price">
               <TextInput
                 type="number"
                 name="price"
@@ -108,7 +111,7 @@ export default function ProductWizard(props: ProductWizardProps) {
               />
             </FieldEntry>
 
-            <FieldEntry labelName="Thumbnail URL">
+            <FieldEntry labelName="Thumbnail URL" htmlFor="thumbnail">
               <TextInput
                 type="text"
                 name="thumbnail"
@@ -117,7 +120,7 @@ export default function ProductWizard(props: ProductWizardProps) {
               />
             </FieldEntry>
 
-            <FieldEntry labelName="Category">
+            <FieldEntry labelName="Category" htmlFor="categoryId">
               <Dropdown
                 name="categoryId"
                 options={categories.map((category) => {
