@@ -1,8 +1,6 @@
 'use client'
 
 import styles from "@/components/SummaryTracker.module.css";
-import { Category } from "@/app/types";
-import { Product } from "@/app/types";
 import { ProductsResponse } from "@/app/types";
 
 
@@ -14,8 +12,6 @@ const emptyStockList = data.products.filter(product => product.availabilityStatu
 
 
 export default function SummaryTracker() {
-  console.log(data.products[1].availabilityStatus)
-  
   return (
     <section className={styles.stats}>
 
