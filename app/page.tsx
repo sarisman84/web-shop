@@ -1,4 +1,5 @@
 import SummaryTracker from "@/components/SummaryTracker";
+import DeleteProductButton from "@/components/DeleteProductButton";
 import type { ProductsResponse } from "./types";
 import ProductHeader from "@/components/ProductHeader";
 
@@ -6,11 +7,6 @@ const API_URL = "http://localhost:4000";
 const defaultLimit = "6";
 
 export default async function Home() {
-  // We use the fetch() method to get the products from the API
-  // In this fetch we sort using _sort and _order and we limit the number of products
-  // We also use _expand to get the relational category data
-  // We can use the other destructured variables like page, total and so on to create pagination later
-
   const {
     products,
     total,
@@ -35,9 +31,13 @@ export default async function Home() {
           <p>No products available.</p>
         ) : (
           products.map((product) => (
-            <h2 key={product.id}>
-              {product.title} - {product.category?.name}
-            </h2>
+            <div key={product.id}>
+              <h2>
+                {product.title} - {product.category?.name}
+              </h2>
+
+              <DeleteProductButton productName={product.title} />
+            </div>
           ))
         )}
       </div>
