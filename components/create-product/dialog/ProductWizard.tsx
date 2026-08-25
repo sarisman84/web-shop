@@ -1,54 +1,14 @@
 "use client";
 import {
-  CloseButton,
   Description,
   Dialog,
   DialogPanel,
   DialogTitle,
-  Field,
-  Label,
-  Transition,
 } from "@headlessui/react";
 import { useProductWizardDialog } from "./ProductWizardProvider";
 import style from "./ProductWizard.module.css";
-import Dropdown from "@/utils/components/dropdown/Dropdown";
-import MultilineFieldEntry from "@/utils/components/multiline-field-entry/MultilineFieldEntry";
-import MultilineTextInput from "@/utils/components/multiline-text-input/MultilineTextInput";
-import TextInput from "@/utils/components/text-input/TextInput";
-import {
-  ChangeEvent,
-  PropsWithChildren,
-  useActionState,
-  useEffect,
-  useState,
-} from "react";
-import { createProduct } from "../actions/createProduct";
-import { Category } from "@/app/types";
-import serverAPI from "@/server/api/serverAPI";
 import CreateProductForms from "../forms/CreateProductForms";
-
-interface FieldEntryProps extends PropsWithChildren {
-  labelName: string;
-  htmlFor: string;
-}
-function FieldEntry(props: FieldEntryProps) {
-  return (
-    <Field className="flex gap-1 items-center justify-between">
-      <Label className="flex-1" htmlFor={props.htmlFor}>
-        {props.labelName}
-      </Label>
-      {props.children}
-    </Field>
-  );
-}
-
-const initialState: { message: string; errors?: Record<string, string[]> } = {
-  message: "",
-};
-
-interface ProductWizardProps {
-  categories: Category[];
-}
+import { ProductWizardProps } from "./ProductWizard.props";
 
 export default function ProductWizard(props: ProductWizardProps) {
   const dialog = useProductWizardDialog();

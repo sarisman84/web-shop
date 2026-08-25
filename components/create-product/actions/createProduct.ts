@@ -2,6 +2,8 @@
 
 import serverAPI from "@/server/api/serverAPI";
 import { CreateProductDesc } from "@/server/api/serverAPI.types";
+import { revalidatePath } from "next/cache";
+import { redirect } from "next/dist/server/api-utils";
 
 type FormState = {
   message: string;
@@ -58,6 +60,8 @@ export async function createProduct(
   }
 
   await serverAPI.createProduct(submission);
+
+  revalidatePath("/");
 
   return {
     message: "Product created!",

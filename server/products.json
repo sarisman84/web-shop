@@ -11859,6 +11859,34 @@
       },
       "id": 198,
       "sku": "FRA-TES-TES-198"
+    },
+    {
+      "title": "Test 5",
+      "description": "Test 3",
+      "price": 642,
+      "brand": "Test 10",
+      "categoryId": 3,
+      "thumbnail": "https://picsum.photos/200",
+      "meta": {
+        "createdAt": "2026-08-25T14:47:02.489Z",
+        "updatedAt": "2026-08-25T14:47:02.489Z"
+      },
+      "id": 199,
+      "sku": "FUR-TES-TES-199"
+    },
+    {
+      "title": "Test 5",
+      "description": "adwada",
+      "price": 1231234,
+      "brand": "dawdawd",
+      "categoryId": 17,
+      "thumbnail": "adwadawd",
+      "meta": {
+        "createdAt": "2026-08-25T15:37:21.184Z",
+        "updatedAt": "2026-08-25T15:37:21.184Z"
+      },
+      "id": 200,
+      "sku": "TAB-DAW-TES-200"
     }
   ],
   "categories": [

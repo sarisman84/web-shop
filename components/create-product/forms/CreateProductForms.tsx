@@ -66,18 +66,18 @@ export default function CreateProductForms(props: CreateProductFormsProps) {
         />
       </FieldEntry>
       <div className={`flex pt-5 gap-5 justify-self-center font-bold`}>
-        <CloseButton
+        <button
           type="submit"
-          className="dark:bg-slate-600 dark:hover:bg-slate-500 px-2 py-1 rounded-sm cursor-pointer"
+          className="bg-slate-600 hover:bg-slate-500 px-2 py-1 rounded-sm cursor-pointer"
         >
           Create
-        </CloseButton>
-        <CloseButton
+        </button>
+        <button
           type="button"
-          className="dark:bg-red-900 dark:hover:bg-red-800 px-2 py-1 rounded-sm cursor-pointer"
+          className="bg-red-900 hover:bg-red-800 px-2 py-1 rounded-sm cursor-pointer"
         >
           Cancel
-        </CloseButton>
+        </button>
       </div>
     </form>
   );
