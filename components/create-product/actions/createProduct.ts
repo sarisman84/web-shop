@@ -9,6 +9,7 @@ export async function createProduct(
   prevState: FormState,
   formData: FormData,
 ): Promise<FormState> {
+  
   const submission: CreateProductDesc = {
     title: formData.get("title") as string,
     description: formData.get("description") as string,

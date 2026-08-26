@@ -10,6 +10,7 @@ const serverAPI = {
       const method = `${settings ? (settings.method ?? "GET") : "GET"}`;
       const actionMessage = method === "GET" ? "fetch data from" : "send data to";
       const path = `http://localhost:4000${endpoint}`;
+      
       console.log(
         `[${method}][Log][${endpoint}]: Attempting to ${actionMessage} ${path}  `,
       );

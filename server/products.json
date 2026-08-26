@@ -11915,6 +11915,34 @@
       },
       "id": 202,
       "sku": "SPO-LEX-SOM-202"
+    },
+    {
+      "title": "Patrik's Product :)",
+      "description": "adwadawdawdawd",
+      "price": 12345,
+      "brand": "Lexicon",
+      "categoryId": 2,
+      "thumbnail": "https://picsum.photos/200",
+      "meta": {
+        "createdAt": "2026-08-26T07:44:59.735Z",
+        "updatedAt": "2026-08-26T07:44:59.735Z"
+      },
+      "id": 203,
+      "sku": "FRA-LEX-PAT-203"
+    },
+    {
+      "title": "Test 1",
+      "description": "Test 2",
+      "price": 123,
+      "brand": "Test 3",
+      "categoryId": 16,
+      "thumbnail": "https://picsum.photos/200",
+      "meta": {
+        "createdAt": "2026-08-26T07:51:14.424Z",
+        "updatedAt": "2026-08-26T07:51:14.424Z"
+      },
+      "id": 204,
+      "sku": "SUN-TES-TES-204"
     }
   ],
   "categories": [
