@@ -11,7 +11,7 @@ module.exports = (req, res, next) => {
                 error: `Missing required fields: ${missingFields.join(', ')}`
             });
         }
-
+        console.log(`[REQ] ${req.method} ${req.originalUrl || req.url}`);
 
         // add meta data to the request/new post
         const now = new Date().toISOString();
