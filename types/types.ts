@@ -5,6 +5,8 @@ export interface Category {
   image: string;
 }
 
+export type StockStatus = "in-stock" | "low-stock" | "out-of-stock";
+
 export interface Product {
   id: number;
   title: string;
@@ -15,6 +17,7 @@ export interface Product {
   discountPercentage?: number;
   rating?: number;
   stock?: number;
+  status?: StockStatus;
   tags?: string[];
   brand?: string;
   sku?: string;
