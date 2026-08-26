@@ -11,12 +11,8 @@
     "lint": "eslint"
   },
   "dependencies": {
-<<<<<<< HEAD
-    "lucide-react": "^1.28.0",
-=======
     "@headlessui/react": "^2.2.10",
     "lucide-react": "^1.32.0",
->>>>>>> main
     "next": "16.2.10",
     "react": "19.2.4",
     "react-dom": "19.2.4"
