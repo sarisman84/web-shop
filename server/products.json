@@ -11887,6 +11887,34 @@
       },
       "id": 200,
       "sku": "TAB-DAW-TES-200"
+    },
+    {
+      "title": "Test 1",
+      "description": "Test 3",
+      "price": 1234,
+      "brand": "Test 10",
+      "categoryId": 16,
+      "thumbnail": "aaaa",
+      "meta": {
+        "createdAt": "2026-08-26T07:24:24.188Z",
+        "updatedAt": "2026-08-26T07:24:24.188Z"
+      },
+      "id": 201,
+      "sku": "SUN-TES-TES-201"
+    },
+    {
+      "title": "Some random prod",
+      "description": "Yes :)",
+      "price": 10000,
+      "brand": "Lexicon",
+      "categoryId": 15,
+      "thumbnail": "aaaaa",
+      "meta": {
+        "createdAt": "2026-08-26T07:24:46.008Z",
+        "updatedAt": "2026-08-26T07:24:46.008Z"
+      },
+      "id": 202,
+      "sku": "SPO-LEX-SOM-202"
     }
   ],
   "categories": [

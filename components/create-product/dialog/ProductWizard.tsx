@@ -32,7 +32,12 @@ export default function ProductWizard(props: ProductWizardProps) {
             Add a new product to your inventory by filling out the form below.
             Make sure to provide accurate information for each field.
           </Description>
-          <CreateProductForms categories={props.categories} />
+          <CreateProductForms
+            categories={props.categories}
+            onSuccess={() => {
+              dialog.closeModal();
+            }}
+          />
         </DialogPanel>
       </div>
     </Dialog>

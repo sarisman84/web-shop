@@ -3,12 +3,7 @@
 import serverAPI from "@/server/api/serverAPI";
 import { CreateProductDesc } from "@/server/api/serverAPI.types";
 import { revalidatePath } from "next/cache";
-import { redirect } from "next/dist/server/api-utils";
-
-type FormState = {
-  message: string;
-  errors?: Record<string, string[]>;
-};
+import { FormState } from "./createProduct.type";
 
 export async function createProduct(
   prevState: FormState,
@@ -30,32 +25,28 @@ export async function createProduct(
   if (submission.title.length < 3) {
     return {
       message: "Validation failed",
-      errors: { title: ["Title must be at least 3 characters long"] },
+      state: 405,
     };
   }
 
   if (submission.price <= 0) {
     return {
       message: "Validation failed",
-      errors: { price: ["Price must have a value greater than 0."] },
+      state: 406,
     };
   }
 
   if (submission.categoryId <= 0) {
     return {
       message: `Validation failed: Category must be selected. CategoryId: ${submission.categoryId}`,
-      errors: {
-        categoryId: [
-          `Category must be selected. CategoryId: ${submission.categoryId}`,
-        ],
-      },
+      state: 408,
     };
   }
 
   if (submission.thumbnail.length <= 0) {
     return {
       message: `Validation failed: Thumbnail URL must be provided -> ${submission.thumbnail}`,
-      errors: { thumbnail: ["Thumbnail URL must be provided."] },
+      state: 407,
     };
   }
 
@@ -65,5 +56,6 @@ export async function createProduct(
 
   return {
     message: "Product created!",
+    state: 200,
   };
 }
