@@ -1,28 +1,26 @@
 import SummaryTracker from "@/components/SummaryTracker";
 import DeleteProductButton from "@/components/DeleteProductButton";
+import ProductHeader from "@/components/product-header/ProductHeader";
+import ProductWizard from "@/components/create-product/dialog/ProductWizard";
+import serverAPI from "@/server/api/serverAPI";
+import requestProductsAsync from "@/server/product-request";
 import type { ProductsResponse } from "./types";
-import ProductHeader from "@/components/ProductHeader";
 
 const API_URL = "http://localhost:4000";
 const defaultLimit = "6";
 
 export default async function Home() {
-  const {
-    products,
-    total,
-    page,
-    pages,
-    limit,
-  }: ProductsResponse = await fetch(
-    `${API_URL}/products/?_limit=${defaultLimit}&_sort=id&_order=desc&_expand=category`
-  ).then((res) => res.json());
-
-  console.log(products);
-
+  // We use the fetch() method to get the products from the API
+  // In this fetch we sort using _sort and _order and we limit the number of products
+  // We also use _expand to get the relational category data
+  // We can use the other destructured variables like page, total and so on to create pagination later
+  const { products } = await requestProductsAsync();
+  const categories = await serverAPI.getProductCategories();
+  
   return (
     <main>
       <ProductHeader />
-
+      <ProductWizard categories={categories} />
       <h1>Products</h1>
       <SummaryTracker />
 
