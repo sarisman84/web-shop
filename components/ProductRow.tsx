@@ -14,7 +14,7 @@ interface Props {
 
 export default function ProductRow({ product, category }: Props) {
     return (
-        <tr className="hover:bg-gray-50 border border-slate-200 dark:border-slate-800 transition">
+        <tr className="dark:bg-slate-800 hover:bg-slate-50 dark:hover:bg-slate-950 border border-slate-200 dark:border-slate-800 transition">
             <td className="px-6 py-4">
                 <div className="flex items-center gap-4">
                     <Image
@@ -22,7 +22,7 @@ export default function ProductRow({ product, category }: Props) {
                         alt={product.title}
                         width={48}
                         height={48}
-                        className="rounded border border-gray-200 bg-white object-cover"
+                        className="rounded border border-slate-200 dark:border-slate-800 bg-slate-100 dark:bg-slate-900  object-cover"
                     />
 
                     <div>

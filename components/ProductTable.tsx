@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useState } from "react";
+import { use, useEffect, useState } from "react";
 import type { ProductsResponse } from "@/types/types";
 import ProductRow from "@/components/ProductRow";
 import Pagination from "@/components/Pagination";
@@ -32,6 +32,7 @@ export default function ProductTable({ defaultResponse }: Props) {
     fetchProducts();
   }, [page, setResponse]);
 
+
   return (
     <div className="overflow-hidden bg-white ">
       <div className="overflow-x-auto">
@@ -58,7 +59,7 @@ export default function ProductTable({ defaultResponse }: Props) {
           </tbody>
         </table>
       </div>
-      <div className=" flex justify-center items-center bg-gray-50 p-4 border-b border-l border-r border-gray-200">
+      <div className=" flex justify-center items-center dark:bg-slate-950 bg-gray-50 p-4 border-b border-l border-r border-slate-200 dark:border-slate-800">
         <Pagination
           currentPage={page}
           totalPages={response.total}

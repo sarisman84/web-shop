@@ -29,14 +29,14 @@ export default function Pagination({
     <nav className="flex items-center gap-2">
       {/* Previous */}
       <button
-        className="flex h-10 w-10 items-center justify-center rounded-md border border-gray-300 bg-white text-gray-600 transition hover:bg-gray-100 disabled:cursor-not-allowed disabled:opacity-50"
+        className="flex h-10 w-10 items-center justify-center rounded-md border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-950 text-slate-600  dark:text-slate-400 transition hover:bg-slate-100 dark:hover:bg-slate-900 disabled:cursor-not-allowed disabled:opacity-50"
         disabled={currentPage === 1}
         onClick={() => onPageChange(1)}
       >
         <ChevronsLeft />
       </button>
       <button
-        className="flex h-10 w-10 items-center justify-center rounded-md border border-gray-300 bg-white text-gray-600 transition hover:bg-gray-100 disabled:cursor-not-allowed disabled:opacity-50"
+        className="flex h-10 w-10 items-center justify-center rounded-md border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-950 text-slate-600 dark:text-slate-400 transition hover:bg-slate-100 dark:hover:bg-slate-900 disabled:cursor-not-allowed disabled:opacity-50"
         disabled={currentPage === 1}
         onClick={() => onPageChange(currentPage - 1)}
       >
@@ -49,7 +49,7 @@ export default function Pagination({
         // Intented effect:
         // [2] + 0 = 2
         // [2] + 1 = 3
-        // [2] + 2 = 4
+        // [2] + 2 = 4 <-
         // [2] + 3 = 5
         // [2] + 4 = 6
 
@@ -60,8 +60,8 @@ export default function Pagination({
             className={`flex h-10 min-w-10 items-center justify-center rounded-md border text-sm font-medium transition
               ${
                 currentPage === offsetPage
-                  ? "border-gray-700 bg-gray-500 text-white"
-                  : "border-gray-300 bg-white text-gray-700 hover:bg-gray-100"
+                  ? "border-slate-700 dark:border-slate-500 bg-slate-500 text-slate-50 dark:text-slate-950"
+                  : "border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-950 text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-900"
               }`}
           >
             {offsetPage}
@@ -71,7 +71,7 @@ export default function Pagination({
 
       {/* Next */}
       <button
-        className="flex h-10 w-10 items-center justify-center rounded-md border border-gray-300 bg-white text-gray-600 transition hover:bg-gray-100 disabled:cursor-not-allowed disabled:opacity-50"
+        className="flex h-10 w-10 items-center justify-center rounded-md border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-950 text-slate-600  dark:text-slate-400 transition hover:bg-slate-100 dark:hover:bg-slate-900 disabled:cursor-not-allowed disabled:opacity-50"
         disabled={currentPage === totalPages - 1}
         onClick={() => onPageChange(currentPage + 1)}
       >
@@ -79,7 +79,7 @@ export default function Pagination({
       </button>
 
       <button
-        className="flex h-10 w-10 items-center justify-center rounded-md border border-gray-300 bg-white text-gray-600 transition hover:bg-gray-100 disabled:cursor-not-allowed disabled:opacity-50"
+        className="flex h-10 w-10 items-center justify-center rounded-md border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-950 text-slate-600  dark:text-slate-400 transition hover:bg-slate-100 dark:hover:bg-slate-900 disabled:cursor-not-allowed disabled:opacity-50"
         disabled={currentPage === totalPages - 1}
         onClick={() => onPageChange(totalPages - 1)}
       >
