@@ -6,7 +6,7 @@ import {
   ChevronsLeft,
   ChevronsRight,
 } from "lucide-react";
-import { useEffect, useState } from "react";
+import { ReactNode } from "react";
 
 type PaginationProps = {
   currentPage: number;
@@ -20,11 +20,11 @@ export default function Pagination({
   onPageChange,
 }: PaginationProps) {
   // const pages = [1, 2, 3, "...", 25];
-  const pages = [1, 2, 3, "...", totalPages];
+  //   const pages = [1, 2, 3, "...", totalPages];
 
   //TODO: Make the Pagination dynamic by ensuring that the first three pages relative to the selected page is shown at all times.
   // <<< < 1 2 [3] 4 5 > >>>
-
+  const array = [...Array(5)];
   return (
     <nav className="flex items-center gap-2">
       {/* Previous */}
@@ -43,35 +43,36 @@ export default function Pagination({
         <ChevronLeft />
       </button>
 
-      {/* Fix error solution: key + 'string' = combination makes it unique so Next do not complain */}
-      {pages.map((page, index) =>
-        page === "..." ? (
-          <span
-            key={index + "unique"}
-            className="px-2 text-sm text-gray-500 font-bold"
-          >
-            ...
-          </span>
-        ) : (
+      {array.map((_, index) => {
+        const middlePage = Math.ceil(currentPage / 2); // [4] -> 2
+        const offsetPage = middlePage + index;
+        // Intented effect:
+        // [2] + 0 = 2
+        // [2] + 1 = 3
+        // [2] + 2 = 4
+        // [2] + 3 = 5
+        // [2] + 4 = 6
+
+        return (
           <button
-            key={page}
-            onClick={() => onPageChange(Number(page))}
+            key={offsetPage}
+            onClick={() => onPageChange(Number(offsetPage))}
             className={`flex h-10 min-w-10 items-center justify-center rounded-md border text-sm font-medium transition
               ${
-                page === page
+                currentPage === offsetPage
                   ? "border-gray-700 bg-gray-500 text-white"
                   : "border-gray-300 bg-white text-gray-700 hover:bg-gray-100"
               }`}
           >
-            {page}
+            {offsetPage}
           </button>
-        ),
-      )}
+        );
+      })}
 
       {/* Next */}
       <button
         className="flex h-10 w-10 items-center justify-center rounded-md border border-gray-300 bg-white text-gray-600 transition hover:bg-gray-100 disabled:cursor-not-allowed disabled:opacity-50"
-        disabled={currentPage === totalPages}
+        disabled={currentPage === totalPages - 1}
         onClick={() => onPageChange(currentPage + 1)}
       >
         <ChevronRight />
@@ -79,7 +80,7 @@ export default function Pagination({
 
       <button
         className="flex h-10 w-10 items-center justify-center rounded-md border border-gray-300 bg-white text-gray-600 transition hover:bg-gray-100 disabled:cursor-not-allowed disabled:opacity-50"
-        disabled={currentPage === totalPages}
+        disabled={currentPage === totalPages - 1}
         onClick={() => onPageChange(totalPages - 1)}
       >
         <ChevronsRight />
