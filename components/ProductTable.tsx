@@ -35,8 +35,8 @@ export default function ProductTable({ defaultResponse }: Props) {
   return (
     <div className="overflow-hidden bg-white ">
       <div className="overflow-x-auto">
-        <table className="w-full  overflow-x-auto rounded-lg border border-gray-200 text-sm">
-          <thead className="bg-gray-50 text-left text-gray-700 tracking-wide text-xs font-bold">
+        <table className="w-full  overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800 text-sm">
+          <thead className="bg-slate-50 dark:bg-slate-950 text-left text-slate-700 dark:text-slate-300 tracking-wide text-xs font-bold">
             <tr>
               <th className="px-6 py-4">Title</th>
               <th className="px-6 py-4">Brand</th>

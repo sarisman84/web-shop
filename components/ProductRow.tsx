@@ -14,7 +14,7 @@ interface Props {
 
 export default function ProductRow({ product, category }: Props) {
     return (
-        <tr className="hover:bg-gray-50 border border-gray-200 transition">
+        <tr className="hover:bg-gray-50 border border-slate-200 dark:border-slate-800 transition">
             <td className="px-6 py-4">
                 <div className="flex items-center gap-4">
                     <Image
@@ -26,22 +26,22 @@ export default function ProductRow({ product, category }: Props) {
                     />
 
                     <div>
-                        <div className="font-semibold text-gray-900">
+                        <div className="font-semibold text-slate-900 dark:text-slate-100">
                             {product.title}
                         </div>
 
-                        <div className="text-sm text-gray-500">
+                        <div className="text-sm text-slate-600 dark:text-slate-300">
                             SKU: {product.sku}
                         </div>
                     </div>
                 </div>
             </td>
 
-            <td className="px-6 py-4 text-gray-600">
+            <td className="px-6 py-4 text-slate-600 dark:text-slate-200">
                 {product.brand}
             </td>
 
-            <td className="px-6 py-4 text-gray-600">
+            <td className="px-6 py-4 text-slate-600 dark:text-slate-200">
 
 
 
@@ -57,7 +57,7 @@ export default function ProductRow({ product, category }: Props) {
                 /> */}
             </td>
 
-            <td className="px-6 py-4 font-bold">
+            <td className="px-6 py-4 font-bold text-slate-600 dark:text-slate-200">
                 €
                 {product.price.toLocaleString(undefined, {
                     minimumFractionDigits: 2,
