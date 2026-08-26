@@ -23,7 +23,7 @@ export default async function Home() {
 
   // const { products, total, page, pages, limit }: ProductsResponse = await fetch(
     const response : ProductsResponse = await fetch(
-    `${API_URL}/products/?_limit=${defaultLimit}&_sort=id&_order=desc&_expand=category`,
+    `${API_URL}/products/?_page=${1}_limit=${defaultLimit}&_sort=id&_order=desc&_expand=category`,
   ).then((res) => res.json());
 
 
