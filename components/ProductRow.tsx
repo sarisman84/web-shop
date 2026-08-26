@@ -1,7 +1,9 @@
 import Image from "next/image";
 import { Pencil, Trash2 } from "lucide-react";
 import { Product, Category } from "@/types/types";
-import StockBadge from "./StockBadge";
+import StockBadge from "@/components/StockBadge";
+
+// "availabilityStatus": "In Stock",
 
 interface Props {
     product: Product;
@@ -40,13 +42,19 @@ export default function ProductRow({ product, category }: Props) {
             </td>
 
             <td className="px-6 py-4 text-gray-600">
+
+
+
                 {category.name}
             </td>
 
             <td className="px-6 py-4">
-                <StockBadge
+
+                {product.availabilityStatus} ({product.stock})
+
+                {/*<StockBadge
                  stock={product.stock}
-                />
+                /> */}
             </td>
 
             <td className="px-6 py-4 font-bold">
