@@ -1,5 +1,11 @@
 "use client";
 
+import {
+  ChevronLeft,
+  ChevronRight,
+  ChevronsLeft,
+  ChevronsRight,
+} from "lucide-react";
 import { useEffect, useState } from "react";
 
 type PaginationProps = {
@@ -16,15 +22,25 @@ export default function Pagination({
   // const pages = [1, 2, 3, "...", 25];
   const pages = [1, 2, 3, "...", totalPages];
 
+  //TODO: Make the Pagination dynamic by ensuring that the first three pages relative to the selected page is shown at all times.
+  // <<< < 1 2 [3] 4 5 > >>>
+
   return (
     <nav className="flex items-center gap-2">
       {/* Previous */}
       <button
         className="flex h-10 w-10 items-center justify-center rounded-md border border-gray-300 bg-white text-gray-600 transition hover:bg-gray-100 disabled:cursor-not-allowed disabled:opacity-50"
         disabled={currentPage === 1}
+        onClick={() => onPageChange(1)}
+      >
+        <ChevronsLeft />
+      </button>
+      <button
+        className="flex h-10 w-10 items-center justify-center rounded-md border border-gray-300 bg-white text-gray-600 transition hover:bg-gray-100 disabled:cursor-not-allowed disabled:opacity-50"
+        disabled={currentPage === 1}
         onClick={() => onPageChange(currentPage - 1)}
       >
-        &#8249;
+        <ChevronLeft />
       </button>
 
       {/* Fix error solution: key + 'string' = combination makes it unique so Next do not complain */}
@@ -58,7 +74,15 @@ export default function Pagination({
         disabled={currentPage === totalPages}
         onClick={() => onPageChange(currentPage + 1)}
       >
-        &#8250;
+        <ChevronRight />
+      </button>
+
+      <button
+        className="flex h-10 w-10 items-center justify-center rounded-md border border-gray-300 bg-white text-gray-600 transition hover:bg-gray-100 disabled:cursor-not-allowed disabled:opacity-50"
+        disabled={currentPage === totalPages}
+        onClick={() => onPageChange(totalPages - 1)}
+      >
+        <ChevronsRight />
       </button>
     </nav>
   );
