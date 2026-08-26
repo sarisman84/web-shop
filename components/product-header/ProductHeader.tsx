@@ -1,6 +1,10 @@
+"use client"
+import { useProductWizardDialog } from "@/components/create-product/dialog/ProductWizardProvider";
 import styles from "./ProductHeader.module.css";
 
 export default function ProductHeader() {
+  const ctx = useProductWizardDialog();
+
   return (
     <header className={styles.header}>
       <div>
@@ -11,7 +15,11 @@ export default function ProductHeader() {
         </p>
       </div>
 
-      <button className={styles.button} type="button">
+      <button
+        className={styles.button}
+        type="button"
+        onClick={() => ctx.openModal()}
+      >
         + Add Product
       </button>
     </header>
