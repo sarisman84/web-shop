@@ -1,7 +1,9 @@
+
 import type { ProductsResponse } from '@/types/types';
 import ProductHeader from "@/components/ProductHeader";
 import ProductTable from "@/components/ProductTable";
 // import {Product} from "@/types/types";
+
 
 const API_URL = "http://localhost:4000";
 const defaultLimit = "6";
@@ -13,6 +15,7 @@ function getProducts(limit = 10): Product[] {
 */
 
 export default async function Home() {
+
   // we use the fetch() method to get the products from the API
   // in this fetch we sort using _sort and _order and we limit the number of products using _limit
   // we also use _expand to get the relational category data
@@ -35,6 +38,7 @@ export default async function Home() {
             <ProductTable defaultResponse={response}  />
 
         </section>
+
     </main>
   );
 }
