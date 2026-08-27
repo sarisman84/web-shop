@@ -37,12 +37,9 @@ export default async function Home() {
       <ProductHeader />
       <ProductWizard categories={categories} />
 
-      <h1>Products</h1>
-      <SummaryTracker />
-
-      <Search />
-
-      <section className="w-full max-w-7xl mx-auto my-4">
+      <section className="w-full max-w-7xl mx-auto my-4 flex flex-col gap-5">
+        <SummaryTracker />
+        <Search />
         <ProductTable defaultResponse={response} />
       </section>
 
