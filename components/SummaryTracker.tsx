@@ -19,16 +19,19 @@ const emptyStockList = data.products.filter(
 interface CardProps extends PropsWithChildren {
   label: string;
   indicatorValue: number;
+  indicatorColor: string;
 }
 
-function Card({ label, indicatorValue, children }: CardProps) {
+function Card({ label, indicatorValue, indicatorColor, children }: CardProps) {
   return (
-    <div className="min-w w-full h-25 p-6 bg-slate-50 dark:bg-slate-950 border border-solid border-slate-100 dark:border-slate-900 rounded-[12px]">
+    <div className="min-w w-full h-25 p-6 bg-slate-50 dark:bg-slate-950 border border-solid border-slate-300 dark:border-slate-900 rounded-[12px]">
       <p className="m-0 text-[0.75rem] font-medium uppercase tracking-[0.08rem] text-slate-700 dark:text-slate-300">
         {label}
       </p>
-      <div className={styles["stat-info"]}>
-        <p className={`${styles.counter} text-[#615fff]`}>{indicatorValue}</p>
+      <div className="flex flex-row justify-between gap-[0.4rem]">
+        <p className={`${styles.counter} text-[${indicatorColor}]`}>
+          {indicatorValue}
+        </p>
         {children}
       </div>
     </div>
@@ -36,10 +39,13 @@ function Card({ label, indicatorValue, children }: CardProps) {
 }
 
 export default function SummaryTracker() {
-  
   return (
     <section className="flex justify-center flex-row gap-6">
-      <Card label="Products" indicatorValue={data.total}>
+      <Card
+        label="Products"
+        indicatorValue={data.total}
+        indicatorColor="#615fff"
+      >
         <svg
           className="text-[#615fff]"
           xmlns="http://www.w3.org/2000/svg"
@@ -53,7 +59,11 @@ export default function SummaryTracker() {
           />
         </svg>
       </Card>
-      <Card label="In stock" indicatorValue={inStockList.length}>
+      <Card
+        label="In stock"
+        indicatorValue={inStockList.length}
+        indicatorColor="#00a63e"
+      >
         <svg
           className="text-[#00a63e]"
           xmlns="http://www.w3.org/2000/svg"
@@ -67,7 +77,11 @@ export default function SummaryTracker() {
           />
         </svg>
       </Card>
-      <Card label="Low Stock" indicatorValue={lowStockList.length}>
+      <Card
+        label="Low Stock"
+        indicatorValue={lowStockList.length}
+        indicatorColor="#e17100"
+      >
         <svg
           className="text-[#e17100]"
           xmlns="http://www.w3.org/2000/svg"
@@ -83,7 +97,11 @@ export default function SummaryTracker() {
           />
         </svg>
       </Card>
-      <Card label="Out of stock" indicatorValue={emptyStockList.length}>
+      <Card
+        label="Out of stock"
+        indicatorValue={emptyStockList.length}
+        indicatorColor="#fb2c36"
+      >
         <svg
           className="text-[#fb2c36]"
           xmlns="http://www.w3.org/2000/svg"
