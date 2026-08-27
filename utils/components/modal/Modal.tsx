@@ -1,3 +1,4 @@
+"use client";
 import {
   Description,
   Dialog,
@@ -14,32 +15,43 @@ export default function Modal(props: ModalProps) {
   const { name, title, children, description } = props;
 
   const defaultClasses = {
-    bg: "fixed inset-0 flex w-screen items-center justify-center p-4 backdrop-blur",
-    panel: "bg-slate-100 dark:bg-slate-800 p-5 rounded-2xl",
-    title: "justify-self-center font-bold pb-4 text-2xl",
-    desc: "",
+    bgClassName:
+      "fixed inset-0 flex w-screen items-center justify-center p-4 backdrop-blur",
+    className: "bg-slate-100 dark:bg-slate-800 p-5 rounded-2xl",
+    titleClassName: "justify-self-center font-bold pb-4 text-2xl",
+    descClassName: "",
   };
   const defaultClassKeys = Object.keys(defaultClasses);
   const defineClasses = () =>
     Object.fromEntries(
-      Object.entries(props)
-        .filter(([key, _]) => defaultClassKeys.includes(key))
-        .map(([key, value]) => {
-          const defaultClass =
-            defaultClasses[key as keyof typeof defaultClasses];
+      Object.keys(defaultClasses).map((key) => {
+        const defaultClass = defaultClasses[key as keyof typeof defaultClasses];
+        if (!defaultClassKeys.includes(key)) {
+          return [key, defaultClass];
+        }
+        const value = props[key as keyof ModalProps];
+        if (!value) {
+          return [key, defaultClass];
+        }
 
-          if (typeof value !== "string") {
-            const settings: OverridableStyle = value;
-            if (settings.override) {
-              return [key, settings.className];
-            }
-            return [key, `${settings.className} ${defaultClass}`];
+        const entry = value as string | OverridableStyle;
+
+        if (typeof entry !== "string") {
+          const settings: OverridableStyle = entry;
+          if (settings.override) {
+            return [key, settings.className];
           }
-          return [key, `${value} ${defaultClass}`];
-        }),
+          return [key, `${settings.className} ${defaultClass}`];
+        }
+        console.log("$s is not overriden", key);
+        return [key, `${value} ${defaultClass}`];
+      }),
     );
-
   const classes = defineClasses();
+
+  Object.entries(classes).forEach(([key, value]) => {
+    console.log(`${key}: ${value}`);
+  });
 
   return (
     <Dialog
@@ -47,10 +59,10 @@ export default function Modal(props: ModalProps) {
       onClose={() => closeModal(name)}
       className="relative z-50"
     >
-      <div className={classes.bg}>
-        <DialogPanel className={classes.panel}>
-          <DialogTitle className={classes.title}>{title}</DialogTitle>
-          <Description className={classes.desc}>{description}</Description>
+      <div className={classes.bgClassName}>
+        <DialogPanel className={classes.className}>
+          <DialogTitle className={classes.titleClassName}>{title}</DialogTitle>
+          <Description className={classes.descClassName}>{description}</Description>
           {children}
         </DialogPanel>
       </div>

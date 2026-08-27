@@ -5,12 +5,15 @@ export type OverridableStyle = {
   override: boolean;
 };
 
-export interface ModalProps extends PropsWithChildren {
-  name: string;
-  title: string;
-  description?: string;
+export type ModalStyle = {
   className?: string | OverridableStyle;
   bgClassName?: string | OverridableStyle;
   titleClassName?: string | OverridableStyle;
   descClassName?: string | OverridableStyle;
+};
+
+export interface ModalProps extends PropsWithChildren {
+  name: string;
+  title: string;
+  description?: string;
 }
