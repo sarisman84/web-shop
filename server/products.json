@@ -11880,7 +11880,7 @@
       "price": 1231234,
       "brand": "dawdawd",
       "categoryId": 17,
-      "thumbnail": "adwadawd",
+      "thumbnail": "https://picsum.photos/200",
       "meta": {
         "createdAt": "2026-08-25T15:37:21.184Z",
         "updatedAt": "2026-08-25T15:37:21.184Z"
@@ -11894,7 +11894,7 @@
       "price": 1234,
       "brand": "Test 10",
       "categoryId": 16,
-      "thumbnail": "aaaa",
+      "thumbnail": "https://picsum.photos/200",
       "meta": {
         "createdAt": "2026-08-26T07:24:24.188Z",
         "updatedAt": "2026-08-26T07:24:24.188Z"
@@ -11908,7 +11908,7 @@
       "price": 10000,
       "brand": "Lexicon",
       "categoryId": 15,
-      "thumbnail": "aaaaa",
+      "thumbnail": "https://picsum.photos/200",
       "meta": {
         "createdAt": "2026-08-26T07:24:46.008Z",
         "updatedAt": "2026-08-26T07:24:46.008Z"
@@ -11918,7 +11918,7 @@
     },
     {
       "title": "Patrik's Product :)",
-      "description": "adwadawdawdawd",
+      "description": "https://picsum.photos/200",
       "price": 12345,
       "brand": "Lexicon",
       "categoryId": 2,
