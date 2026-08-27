@@ -46,7 +46,7 @@ export default function ProductTable({ defaultResponse }: Props) {
   const page = Number(searchParams.get("page")) || 1;
   const q = searchParams.get("q") || "";
   const category = searchParams.get("category") || "";
-  const stock = searchParams.get("stock") || "";
+  const status = searchParams.get("status") || "";
 
   const [products, setProducts] = useState<Product[]>([]);
   const [totalPages, setTotalPages] = useState<number>(1);
@@ -70,14 +70,17 @@ export default function ProductTable({ defaultResponse }: Props) {
 
         if (q) query.set("q", q);
         if (category) query.set("category", category);
-        if (stock === "in-stock") query.set("stock", "in-stock");
-        if (stock === "low-stock") query.set("stock", "low-stock");
-        if (stock === "out-of-stock") query.set("stock", "out-of-stock");
+        if (status === "in-stock") query.set("status", "in-stock");
+        if (status === "low-stock") query.set("status", "low-stock");
+        if (status === "out-of-stock") query.set("status", "out-of-stock");
 
         // Fetch new URL with Query String for Search, Filter
         const res = await fetch(
+
           `${API_URL}/products?${query.toString()}`
         );
+
+        console.log(`${API_URL}/products?${query.toString()}`);
 
         const response: ProductsResponse = await res.json();
 
@@ -92,7 +95,7 @@ export default function ProductTable({ defaultResponse }: Props) {
     };
 
     fetchProducts();
-  }, [page, q, category, stock]); // Re-fetch whenever any parameter in URL changes
+  }, [page, q, category, status]); // Re-fetch whenever any parameter in URL changes
 
 
   /*
