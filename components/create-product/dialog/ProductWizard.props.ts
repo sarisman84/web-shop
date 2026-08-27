@@ -1,4 +1,4 @@
-import { Category } from "@/app/types";
+import { Category } from "@/types/types";
 
 export interface ProductWizardProps {
   categories: Category[];

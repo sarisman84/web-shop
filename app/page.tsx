@@ -27,25 +27,13 @@ export default async function Home() {
       <ProductHeader />
       <ProductWizard categories={categories} />
 
-      <section className="w-full max-w-7xl mx-auto my-4">
+
+      <section className="w-full max-w-7xl mx-auto my-4 flex flex-col gap-5">
+        <SummaryTracker />
+        <Search />
+
         <ProductTable defaultResponse={response} />
       </section>
-
-      {/* <div>
-        {products.length === 0 ? (
-          <p>No products available.</p>
-        ) : (
-          products.map((product) => (
-            <div key={product.id}>
-              <h2>
-                {product.title} - {product.category?.name}
-              </h2>
-
-              <DeleteProductButton productName={product.title} />
-            </div>
-          ))
-        )}
-      </div> */}
     </main>
   );
 }
