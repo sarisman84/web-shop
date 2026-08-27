@@ -1,90 +1,157 @@
 "use client";
 
+import Link from "next/link";
+import { usePathname, useSearchParams } from "next/navigation";
 import {
   ChevronLeft,
   ChevronRight,
   ChevronsLeft,
   ChevronsRight,
 } from "lucide-react";
-import { ReactNode } from "react";
 
-type PaginationProps = {
-  currentPage: number;
-  totalPages: number;
-  onPageChange: (page: number) => void;
-};
-
-export default function Pagination({
-  currentPage,
-  totalPages,
-  onPageChange,
-}: PaginationProps) {
-  // const pages = [1, 2, 3, "...", 25];
-  //   const pages = [1, 2, 3, "...", totalPages];
-
-  //TODO: Make the Pagination dynamic by ensuring that the first three pages relative to the selected page is shown at all times.
-  // <<< < 1 2 [3] 4 5 > >>>
-  const array = [...Array(5)];
-  return (
-    <nav className="flex items-center gap-2">
-      {/* Previous */}
-      <button
-        className="flex h-10 w-10 items-center justify-center rounded-md border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-950 text-slate-600  dark:text-slate-400 transition hover:bg-slate-100 dark:hover:bg-slate-900 disabled:cursor-not-allowed disabled:opacity-50"
-        disabled={currentPage === 1}
-        onClick={() => onPageChange(1)}
-      >
-        <ChevronsLeft />
-      </button>
-      <button
-        className="flex h-10 w-10 items-center justify-center rounded-md border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-950 text-slate-600 dark:text-slate-400 transition hover:bg-slate-100 dark:hover:bg-slate-900 disabled:cursor-not-allowed disabled:opacity-50"
-        disabled={currentPage === 1}
-        onClick={() => onPageChange(currentPage - 1)}
-      >
-        <ChevronLeft />
-      </button>
-
-      {array.map((_, index) => {
-        const middlePage = Math.ceil(currentPage / 2); // [4] -> 2
-        const offsetPage = middlePage + index;
-        // Intented effect:
-        // [2] + 0 = 2
-        // [2] + 1 = 3
-        // [2] + 2 = 4 <-
-        // [2] + 3 = 5
-        // [2] + 4 = 6
-
-        return (
-          <button
-            key={offsetPage}
-            onClick={() => onPageChange(Number(offsetPage))}
-            className={`flex h-10 min-w-10 items-center justify-center rounded-md border text-sm font-medium transition
-              ${
-                currentPage === offsetPage
-                  ? "border-slate-700 dark:border-slate-500 bg-slate-500 text-slate-50 dark:text-slate-950"
-                  : "border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-950 text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-900"
-              }`}
-          >
-            {offsetPage}
-          </button>
-        );
-      })}
-
-      {/* Next */}
-      <button
-        className="flex h-10 w-10 items-center justify-center rounded-md border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-950 text-slate-600  dark:text-slate-400 transition hover:bg-slate-100 dark:hover:bg-slate-900 disabled:cursor-not-allowed disabled:opacity-50"
-        disabled={currentPage === totalPages - 1}
-        onClick={() => onPageChange(currentPage + 1)}
-      >
-        <ChevronRight />
-      </button>
-
-      <button
-        className="flex h-10 w-10 items-center justify-center rounded-md border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-950 text-slate-600  dark:text-slate-400 transition hover:bg-slate-100 dark:hover:bg-slate-900 disabled:cursor-not-allowed disabled:opacity-50"
-        disabled={currentPage === totalPages - 1}
-        onClick={() => onPageChange(totalPages - 1)}
-      >
-        <ChevronsRight />
-      </button>
-    </nav>
-  );
+interface PaginationProps {
+    // currentPage: number;
+    totalPages: number;
+    // onPageChange: (page: number) => void;
 }
+
+export default function Pagination ({
+  // currentPage,
+  totalPages,
+  // onPageChange,
+}: PaginationProps)  {
+
+    const pathname = usePathname();
+    const searchParams = useSearchParams();
+
+    // Get current page from search params, default to 1 if missing or invalid
+    const currentPage = Number(searchParams.get("page")) || 1;
+
+    // Helper to build the URL string for each page link while preserving existing search params
+    const createPageURL = (pageNumber: number | string) => {
+        const params = new URLSearchParams(searchParams);
+        params.set("page", pageNumber.toString());
+        return `${pathname}?${params.toString()}`;
+    };
+
+    // Generate page number sequence
+    const getPageNumbers = () => {
+        const pages: number[] = [];
+        let start = Math.max(1, currentPage - 2);
+        let end = Math.min(totalPages, start + 4);
+
+        if (end - start < 4) {
+            start = Math.max(1, end - 4);
+        }
+
+        for (let i = start; i <= end; i++) {
+            pages.push(i);
+        }
+        return pages;
+    };
+
+    const pages = getPageNumbers();
+
+    /*
+    const baseButtonStyles =
+        "inline-flex items-center justify-center w-10 h-10 text-sm font-medium transition-colors border rounded-md focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-1 disabled:opacity-40 disabled:cursor-not-allowed";
+
+    const defaultButtonStyles =
+        "border-slate-200 bg-white text-slate-500 hover:bg-slate-50 hover:text-slate-700";
+
+    const activeButtonStyles =
+        "border-slate-600 bg-slate-600 text-white shadow-sm";
+    */
+    const baseStyles =
+        "inline-flex items-center justify-center w-10 h-10 text-sm font-medium transition-colors border rounded-md focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-1";
+
+    const defaultStyles =
+        "border-slate-200 bg-white text-slate-500 hover:bg-slate-50 hover:text-slate-700";
+
+    const activeStyles =
+        "border-slate-600 bg-slate-600 text-white shadow-sm pointer-events-none";
+
+    const disabledStyles =
+        "border-slate-200 bg-white text-slate-500 opacity-80 pointer-events-none cursor-not-allowed";
+
+    return (
+        <nav className="flex items-center justify-center gap-1.5 py-4">
+            {/* First Page */}
+            {currentPage > 1 ? (
+                <Link
+                    href={createPageURL(1)}
+                    className={`${baseStyles} ${defaultStyles}`}
+                    aria-label="First page"
+                >
+                    <ChevronsLeft className="w-4 h-4 text-slate-400" />
+                </Link>
+            ) : (
+                <span className={`${baseStyles} ${disabledStyles}`}>
+          <ChevronsLeft className="w-4 h-4 text-slate-300" />
+        </span>
+            )}
+
+            {/* Previous Page */}
+            {currentPage > 1 ? (
+                <Link
+                    href={createPageURL(currentPage - 1)}
+                    className={`${baseStyles} ${defaultStyles}`}
+                    aria-label="Previous page"
+                >
+                    <ChevronLeft className="w-4 h-4 text-slate-400" />
+                </Link>
+            ) : (
+                <span className={`${baseStyles} ${disabledStyles}`}>
+          <ChevronLeft className="w-4 h-4 text-slate-300" />
+        </span>
+            )}
+
+            {/* Page Numbers */}
+            {pages.map((page) => {
+                const isActive = currentPage === page;
+                return (
+                    <Link
+                        key={page}
+                        href={createPageURL(page)}
+                        className={`${baseStyles} ${
+                            isActive ? activeStyles : defaultStyles
+                        }`}
+                        aria-current={isActive ? "page" : undefined}
+                    >
+                        {page}
+                    </Link>
+                );
+            })}
+
+            {/* Next Page */}
+            {currentPage < totalPages ? (
+                <Link
+                    href={createPageURL(currentPage + 1)}
+                    className={`${baseStyles} ${defaultStyles}`}
+                    aria-label="Next page"
+                >
+                    <ChevronRight className="w-4 h-4 text-slate-600" />
+                </Link>
+            ) : (
+                <span className={`${baseStyles} ${disabledStyles}`}>
+          <ChevronRight className="w-4 h-4 text-slate-300" />
+        </span>
+            )}
+
+            {/* Last Page */}
+            {currentPage < totalPages ? (
+                <Link
+                    href={createPageURL(totalPages)}
+                    className={`${baseStyles} ${defaultStyles}`}
+                    aria-label="Last page"
+                >
+                    <ChevronsRight className="w-4 h-4 text-slate-600" />
+                </Link>
+            ) : (
+                <span className={`${baseStyles} ${disabledStyles}`}>
+          <ChevronsRight className="w-4 h-4 text-slate-300" />
+        </span>
+            )}
+        </nav>
+    );
+};

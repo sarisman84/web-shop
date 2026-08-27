@@ -1,18 +1,17 @@
 import Image from "next/image";
 import { Pencil, Trash2 } from "lucide-react";
-import { Product, Category } from "@/types/types";
-import StockBadge from "@/components/StockBadge";
-
-// "availabilityStatus": "In Stock",
+import { Product, Category } from "@/types/products";
 
 interface Props {
     product: Product;
     category: Category;
 }
 
-
-
 export default function ProductRow({ product, category }: Props) {
+
+    // console.log("product: " + product);
+    // console.log("category: " + category);
+
     return (
         <tr className="dark:bg-slate-800 hover:bg-slate-50 dark:hover:bg-slate-950 border border-slate-200 dark:border-slate-800 transition">
             <td className="px-6 py-4">
@@ -42,8 +41,6 @@ export default function ProductRow({ product, category }: Props) {
             </td>
 
             <td className="px-6 py-4 text-slate-600 dark:text-slate-200">
-
-
 
                 {category.name}
             </td>

@@ -1,4 +1,4 @@
-import { Category, ProductsResponse } from "@/app/types";
+import { Category, ProductsResponse } from "@/types/products";
 import { CreateProductDesc, emptyResponse } from "./serverAPI.types";
 
 const serverAPI = {
