@@ -77,7 +77,7 @@ export default function EditForm(props: EditFormsProps) {
         <FieldEntry labelName="Category" htmlFor="categoryId">
           <Dropdown
             name="categoryId"
-            selected={(() => {
+            defaultSelected={(() => {
               if (product.category !== undefined) {
                 return {
                   id: product.category.id,
