@@ -9,6 +9,7 @@ import requestProductsAsync from "@/server/product-request";
 import SummaryTracker from "@/components/SummaryTracker";
 
 import DeleteProductButton from "@/components/delete-product/button/DeleteProductButton";
+import Search from "@/components/Search";
 
 const API_URL = "http://localhost:4000";
 const defaultLimit = "6";
@@ -38,6 +39,8 @@ export default async function Home() {
 
       <h1>Products</h1>
       <SummaryTracker />
+
+      <Search />
 
       <section className="w-full max-w-7xl mx-auto my-4">
         <ProductTable defaultResponse={response} />
