@@ -13,7 +13,7 @@ export const FilterBar: React.FC = () => {
 
     // Local state to manage controls before applying (or for instant search)
     const [search, setSearch] = useState(searchParams.get("q") || "");
-    const [category, setCategory] = useState(searchParams.get("category") || "");
+    const [category, setCategory] = useState(searchParams.get("categoryId") || "");
     const [status, setStatus] = useState(searchParams.get("status") || "");
 
     const handleApplyFilters = () => {
@@ -26,8 +26,8 @@ export const FilterBar: React.FC = () => {
         if (search) params.set("q", search);
         else params.delete("q");
 
-        if (category) params.set("category", category);
-        else params.delete("category");
+        if (category) params.set("categoryId", category);
+        else params.delete("categoryId");
 
         if (status) params.set("status", status);
         else params.delete("status");
@@ -64,9 +64,9 @@ export const FilterBar: React.FC = () => {
                     className="w-full md:w-44 px-3 py-1.5 text-sm border border-slate-200 rounded-md focus:outline-none focus:ring-2 focus:ring-slate-400 focus:border-transparent text-slate-700 bg-white"
                 >
                     <option value="">All Categories</option>
-                    <option value="electronics">Electronics</option>
-                    <option value="clothing">Clothing</option>
-                    <option value="home">Home & Kitchen</option>
+                    <option value="1">Electronics</option>
+                    <option value="2">Clothing</option>
+                    <option value="3">Home & Kitchen</option>
                 </select>
             </div>
 

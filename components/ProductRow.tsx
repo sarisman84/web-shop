@@ -9,8 +9,8 @@ interface Props {
 
 export default function ProductRow({ product, category }: Props) {
 
-    console.log("product: " + product);
-    console.log("category: " + category);
+    // console.log("product: " + product);
+    // console.log("category: " + category);
 
     return (
         <tr className="dark:bg-slate-800 hover:bg-slate-50 dark:hover:bg-slate-950 border border-slate-200 dark:border-slate-800 transition">

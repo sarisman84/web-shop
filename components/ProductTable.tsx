@@ -45,7 +45,7 @@ export default function ProductTable({ defaultResponse }: Props) {
   // Extract search params with defaults
   const page = Number(searchParams.get("page")) || 1;
   const q = searchParams.get("q") || "";
-  const category = searchParams.get("category") || "";
+  const category = searchParams.get("categoryId") || "";
   const status = searchParams.get("status") || "";
 
   const [products, setProducts] = useState<Product[]>([]);
@@ -69,10 +69,10 @@ export default function ProductTable({ defaultResponse }: Props) {
         });
 
         if (q) query.set("q", q);
-        if (category) query.set("category", category);
-        if (status === "in-stock") query.set("status", "in-stock");
-        if (status === "low-stock") query.set("status", "low-stock");
-        if (status === "out-of-stock") query.set("status", "out-of-stock");
+        if (category) query.set("categoryId", category);
+        if (status === "in-stock") query.set("availabilityStatus", "In Stock");
+        if (status === "low-stock") query.set("availabilityStatus", "Low Stock");
+        if (status === "out-of-stock") query.set("availabilityStatus", "Out of Stock");
 
         // Fetch new URL with Query String for Search, Filter
         const res = await fetch(
