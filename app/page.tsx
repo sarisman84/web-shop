@@ -8,6 +8,7 @@ import ProductWizard from "@/components/create-product/dialog/ProductWizard";
 import serverAPI from "@/server/api/serverAPI";
 import requestProductsAsync from "@/server/product-request";
 import DeleteProductButton from "@/components/delete-product/button/DeleteProductButton";
+import Search from "@/components/Search";
 
 const API_URL = "http://localhost:4000";
 const defaultLimit = "6";
@@ -36,6 +37,8 @@ export default async function Home() {
       <ProductWizard categories={categories} />
 
       <h1>Products</h1>
+
+      <Search />
 
       <section className="w-full max-w-7xl mx-auto my-4">
         <ProductTable defaultResponse={response} />
