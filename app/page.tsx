@@ -2,11 +2,12 @@ import type { ProductsResponse } from "@/types/types";
 //import DeleteProductButton from "@/components/DeleteProductButton";
 import ProductTable from "@/components/ProductTable";
 // import {Product} from "@/types/types";
-
 import ProductHeader from "@/components/product-header/ProductHeader";
 import ProductWizard from "@/components/create-product/dialog/ProductWizard";
 import serverAPI from "@/server/api/serverAPI";
 import requestProductsAsync from "@/server/product-request";
+import SummaryTracker from "@/components/SummaryTracker";
+
 import DeleteProductButton from "@/components/delete-product/button/DeleteProductButton";
 
 const API_URL = "http://localhost:4000";
@@ -36,6 +37,7 @@ export default async function Home() {
       <ProductWizard categories={categories} />
 
       <h1>Products</h1>
+      <SummaryTracker />
 
       <section className="w-full max-w-7xl mx-auto my-4">
         <ProductTable defaultResponse={response} />
