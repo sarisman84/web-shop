@@ -6,9 +6,7 @@ import {
   DialogTitle,
 } from "@headlessui/react";
 import { useModal } from "./provider/ModalProvider";
-import CreateProductForms from "@/components/create-product/forms/CreateProductForms";
-import style from "styled-jsx/style";
-import { ModalProps, OverridableStyle } from "./Modal.props";
+import { ModalProps } from "./Modal.props";
 
 export default function Modal(props: ModalProps) {
   const { isOpen, closeModal } = useModal();
