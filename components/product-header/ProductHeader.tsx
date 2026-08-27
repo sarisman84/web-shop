@@ -1,9 +1,11 @@
 "use client"
 import { useProductWizardDialog } from "@/components/create-product/dialog/ProductWizardProvider";
 import styles from "./ProductHeader.module.css";
+import { useModal } from "@/utils/components/modal/provider/ModalProvider";
 
 export default function ProductHeader() {
-  const ctx = useProductWizardDialog();
+  //const ctx = useProductWizardDialog();'
+  const {openModal} = useModal();
 
   return (
     <header className={styles.header}>
@@ -18,7 +20,7 @@ export default function ProductHeader() {
       <button
         className={styles.button}
         type="button"
-        onClick={() => ctx.openModal()}
+        onClick={() => openModal("create-prod")}
       >
         + Add Product
       </button>
