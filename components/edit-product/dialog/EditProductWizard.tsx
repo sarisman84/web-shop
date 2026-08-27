@@ -7,11 +7,11 @@ import { EditProductWizardProps } from "./EditProductWizard.props";
 export default function EditProductWizard(props: EditProductWizardProps) {
   const { closeModal } = useModal();
   return (
-    <Modal name="edit-prod" title="Edit Product">
+    <Modal name={`edit-prod_${props.id}`} title="Edit Product">
       <EditForm
         categories={props.categories}
         onSuccess={() => {
-          closeModal("edit-prod");
+          closeModal(`edit-prod_${props.id}`);
         }}
         product={props.product}
       />{" "}

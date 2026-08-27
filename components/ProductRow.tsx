@@ -18,7 +18,7 @@ export default function ProductRow({ product, category, categories }: ProductRow
 
   return (
     <>
-     <EditProductWizard categories={categories} product={product}/>
+     <EditProductWizard id={product.id} categories={categories} product={product}/>
       <tr className="dark:bg-slate-800 hover:bg-slate-50 dark:hover:bg-slate-950 border border-slate-200 dark:border-slate-800 transition">
         <td className="px-6 py-4">
           <div className="flex items-center gap-4">
@@ -73,7 +73,7 @@ export default function ProductRow({ product, category, categories }: ProductRow
             <button
               className="text-gray-500 hover:text-gray-900"
               onClick={() => {
-                openModal("edit-prod");
+                openModal(`edit-prod_${product.id}`);
               }}
             >
               <Pencil size={18} strokeWidth={3} />

@@ -108,7 +108,7 @@ export default function EditForm(props: EditFormsProps) {
           <button
             type="button"
             className="dark:bg-red-900 dark:hover:bg-red-800 bg-red-500 hover:bg-red-600 px-2 py-1 rounded-sm cursor-pointer"
-            onClick={() => { closeModal("edit-prod")}}
+            onClick={() => { closeModal(`edit-prod_${product.id}`)}}
           >
             Cancel
           </button>
