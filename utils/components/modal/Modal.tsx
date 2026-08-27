@@ -21,37 +21,6 @@ export default function Modal(props: ModalProps) {
     titleClassName: "justify-self-center font-bold pb-4 text-2xl",
     descClassName: "",
   };
-  const defaultClassKeys = Object.keys(defaultClasses);
-  const defineClasses = () =>
-    Object.fromEntries(
-      Object.keys(defaultClasses).map((key) => {
-        const defaultClass = defaultClasses[key as keyof typeof defaultClasses];
-        if (!defaultClassKeys.includes(key)) {
-          return [key, defaultClass];
-        }
-        const value = props[key as keyof ModalProps];
-        if (!value) {
-          return [key, defaultClass];
-        }
-
-        const entry = value as string | OverridableStyle;
-
-        if (typeof entry !== "string") {
-          const settings: OverridableStyle = entry;
-          if (settings.override) {
-            return [key, settings.className];
-          }
-          return [key, `${settings.className} ${defaultClass}`];
-        }
-        console.log("$s is not overriden", key);
-        return [key, `${value} ${defaultClass}`];
-      }),
-    );
-  const classes = defineClasses();
-
-  Object.entries(classes).forEach(([key, value]) => {
-    console.log(`${key}: ${value}`);
-  });
 
   return (
     <Dialog
@@ -59,10 +28,20 @@ export default function Modal(props: ModalProps) {
       onClose={() => closeModal(name)}
       className="relative z-50"
     >
-      <div className={classes.bgClassName}>
-        <DialogPanel className={classes.className}>
-          <DialogTitle className={classes.titleClassName}>{title}</DialogTitle>
-          <Description className={classes.descClassName}>{description}</Description>
+      <div className={`${props.bgClassName} ${defaultClasses.bgClassName}`}>
+        <DialogPanel
+          className={`${props.className} ${defaultClasses.className}`}
+        >
+          <DialogTitle
+            className={`${props.titleClassName} ${defaultClasses.titleClassName}`}
+          >
+            {title}
+          </DialogTitle>
+          <Description
+            className={`${props.descClassName} ${defaultClasses.descClassName}`}
+          >
+            {description}
+          </Description>
           {children}
         </DialogPanel>
       </div>

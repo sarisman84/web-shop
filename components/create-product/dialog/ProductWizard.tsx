@@ -22,6 +22,7 @@ export default function ProductWizard(props: ProductWizardProps) {
       title="Add New Product"
       description="Add a new product to your inventory by filling out the form below.
     //         Make sure to provide accurate information for each field."
+      className="dark:bg-slate-900"
     >
       <CreateProductForms
         categories={props.categories}
