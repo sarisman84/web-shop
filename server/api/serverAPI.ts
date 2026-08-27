@@ -63,6 +63,10 @@ const serverAPI = {
   getProductCategories: async function (): Promise<Category[]> {
     return serverAPI.fetch<Category[]>(`/categories`);
   },
+
+  queryProducts: async function(query: URLSearchParams): Promise<ProductsResponse> {
+    return serverAPI.fetch<ProductsResponse>(`/products?${query.toString()}`);
+  }
 };
 
 export default serverAPI;

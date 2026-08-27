@@ -7,6 +7,7 @@ import ProductRow from "@/components/ProductRow";
 import Pagination from "@/components/Pagination";
 import { API_URL, DEFAULT_LIMIT } from '@/lib/constants'
 import {FilterBar} from "@/components/FilterBar";
+import serverAPI from "@/server/api/serverAPI";
 
 interface Props {
   defaultResponse: ProductsResponse;
@@ -74,15 +75,9 @@ export default function ProductTable({ defaultResponse }: Props) {
         if (status === "low-stock") query.set("availabilityStatus", "Low Stock");
         if (status === "out-of-stock") query.set("availabilityStatus", "Out of Stock");
 
-        // Fetch new URL with Query String for Search, Filter
-        const res = await fetch(
+        
 
-          `${API_URL}/products?${query.toString()}`
-        );
-
-        console.log(`${API_URL}/products?${query.toString()}`);
-
-        const response: ProductsResponse = await res.json();
+        const response: ProductsResponse = await serverAPI.queryProducts(query);
 
         setProducts(response.products);
         setTotalPages(response.pages);

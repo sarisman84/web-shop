@@ -1,6 +1,8 @@
+"use client"
 import Image from "next/image";
 import { Pencil, Trash2 } from "lucide-react";
 import { Product, Category } from "@/types/products";
+import { useModal } from "@/utils/components/modal/provider/ModalProvider";
 
 interface Props {
     product: Product;
@@ -8,7 +10,7 @@ interface Props {
 }
 
 export default function ProductRow({ product, category }: Props) {
-
+    const {openModal} = useModal();
     // console.log("product: " + product);
     // console.log("category: " + category);
 
@@ -67,7 +69,7 @@ export default function ProductRow({ product, category }: Props) {
                         <Trash2 size={18} strokeWidth={3} />
                     </button>
 
-                    <button className="text-gray-500 hover:text-gray-900">
+                    <button className="text-gray-500 hover:text-gray-900" onClick={() => {openModal("edit-prod")}}>
                         <Pencil size={18} strokeWidth={3} />
                     </button>
                 </div>

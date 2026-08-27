@@ -4,9 +4,8 @@ import { API_URL, DEFAULT_LIMIT } from '@/lib/constants'
 import ProductHeader from "@/components/product-header/ProductHeader";
 import ProductWizard from "@/components/create-product/dialog/ProductWizard";
 import serverAPI from "@/server/api/serverAPI";
-import requestProductsAsync from "@/server/product-request";
-import {FilterBar} from "@/components/FilterBar";
 import SummaryTracker from "@/components/SummaryTracker";
+import EditProductWizard from "@/components/edit-product/dialog/EditProductWizard";
 
 
 export default async function Home() {
@@ -27,6 +26,7 @@ export default async function Home() {
     <main>
       <ProductHeader />
       <ProductWizard categories={categories} />
+      <EditProductWizard categories={categories} />
       <section className="w-full max-w-7xl mx-auto my-4 flex flex-col gap-5">
         <SummaryTracker />
         <ProductTable defaultResponse={response} />

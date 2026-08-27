@@ -5,10 +5,11 @@ import Modal from "@/utils/components/modal/Modal"
 import MultilineFieldEntry from "@/utils/components/multiline-field-entry/MultilineFieldEntry";
 import MultilineTextInput from "@/utils/components/multiline-text-input/MultilineTextInput";
 import TextInput from "@/utils/components/text-input/TextInput";
-import { State } from "../create-product/actions/createProduct.type";
-import FieldEntry from "../create-product/forms/field-entry/FieldEntry";
+import { State } from "../../create-product/actions/createProduct.type";
+import FieldEntry from "../../create-product/forms/field-entry/FieldEntry";
 import { useActionState, useEffect } from "react";
-import { EditFormsProps } from "./EditForm.props";
+import { EditFormsProps } from "../EditForm.props";
+import editProduct from "../actions/editProduct";
 
 const initialState: { message: string; state: State } = {
   message: "",
