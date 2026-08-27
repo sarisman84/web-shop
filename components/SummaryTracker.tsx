@@ -1,7 +1,7 @@
 'use client'
 
 import styles from "@/components/SummaryTracker.module.css";
-import { ProductsResponse } from "@/app/types";
+import { ProductsResponse } from "@/types/types";
 
 
 const res = await fetch('http://localhost:4000/products');
