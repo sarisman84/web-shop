@@ -45,22 +45,6 @@ export default async function Home() {
       <section className="w-full max-w-7xl mx-auto my-4">
         <ProductTable defaultResponse={response} />
       </section>
-
-      {/* <div>
-        {products.length === 0 ? (
-          <p>No products available.</p>
-        ) : (
-          products.map((product) => (
-            <div key={product.id}>
-              <h2>
-                {product.title} - {product.category?.name}
-              </h2>
-
-              <DeleteProductButton productName={product.title} />
-            </div>
-          ))
-        )}
-      </div> */}
     </main>
   );
 }
