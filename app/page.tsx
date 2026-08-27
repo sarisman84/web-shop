@@ -6,6 +6,7 @@ import ProductWizard from "@/components/create-product/dialog/ProductWizard";
 import serverAPI from "@/server/api/serverAPI";
 import requestProductsAsync from "@/server/product-request";
 import {FilterBar} from "@/components/FilterBar";
+import SummaryTracker from "@/components/SummaryTracker";
 
 
 export default async function Home() {
@@ -19,19 +20,15 @@ export default async function Home() {
   // We also use _expand to get the relational category data
   // We can use the other destructured variables like page, total and so on to create pagination later
   // const { products } = await requestProductsAsync();
-  const { products } = await serverAPI.getProducts(parseInt(DEFAULT_LIMIT));
+  const { products } = await serverAPI.getProducts();
   const categories = await serverAPI.getProductCategories();
 
   return (
     <main>
       <ProductHeader />
       <ProductWizard categories={categories} />
-
-
       <section className="w-full max-w-7xl mx-auto my-4 flex flex-col gap-5">
         <SummaryTracker />
-        <Search />
-
         <ProductTable defaultResponse={response} />
       </section>
     </main>
