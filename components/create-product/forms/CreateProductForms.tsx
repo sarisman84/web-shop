@@ -7,6 +7,7 @@ import { createProduct } from "../actions/createProduct";
 import FieldEntry from "./field-entry/FieldEntry";
 import { CreateProductFormsProps } from "./CreateProductForms.props";
 import { State } from "../actions/createProduct.type";
+import { useModal } from "@/utils/components/modal/provider/ModalProvider";
 
 const initialState: { message: string; state: State } = {
   message: "",
@@ -14,6 +15,8 @@ const initialState: { message: string; state: State } = {
 };
 
 export default function CreateProductForms(props: CreateProductFormsProps) {
+  const { closeModal } = useModal();
+
   const [state, formAction, _] = useActionState(createProduct, initialState);
   const { categories, onSuccess } = props;
 
@@ -83,6 +86,9 @@ export default function CreateProductForms(props: CreateProductFormsProps) {
         <button
           type="button"
           className="dark:bg-red-900 dark:hover:bg-red-800 bg-red-500 hover:bg-red-600 px-2 py-1 rounded-sm cursor-pointer"
+          onClick={() => {
+            closeModal("create-prod");
+          }}
         >
           Cancel
         </button>

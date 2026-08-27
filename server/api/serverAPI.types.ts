@@ -1,6 +1,7 @@
 import { ProductsResponse } from "@/app/types";
 
-export interface CreateProductDesc {
+
+export interface ProductDesc {
   title: string;
   price: number;
   description: string;

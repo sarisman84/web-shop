@@ -1,16 +1,17 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import type {Product, ProductsResponse} from "@/types/products";
+import type { Product, ProductsResponse } from "@/types/products";
 import { useSearchParams } from "next/navigation";
 import ProductRow from "@/components/ProductRow";
 import Pagination from "@/components/Pagination";
-import { API_URL, DEFAULT_LIMIT } from '@/lib/constants'
-import {FilterBar} from "@/components/FilterBar";
+import { API_URL, DEFAULT_LIMIT } from "@/lib/constants";
+import { FilterBar } from "@/components/FilterBar";
 import serverAPI from "@/server/api/serverAPI";
+import { Category } from "@/types/types";
 
-interface Props {
-  defaultResponse: ProductsResponse;
+interface ProductTableProps {
+  categories: Category[];
 }
 
 /*
@@ -35,11 +36,9 @@ export default function ProductTable({ defaultResponse }: Props) {
     fetchProducts();
   }, [page, setResponse]);
 */
-export default function ProductTable({ defaultResponse }: Props) {
-
+export default function ProductTable({ categories }: ProductTableProps) {
   // Define use states for the page and response
   // const [page, setPage] = useState(1);
-  const [response, setResponse] = useState<ProductsResponse>(defaultResponse);
 
   const searchParams = useSearchParams();
 
@@ -54,9 +53,7 @@ export default function ProductTable({ defaultResponse }: Props) {
   const [loading, setLoading] = useState<boolean>(false);
 
   useEffect(() => {
-
     const fetchProducts = async () => {
-
       setLoading(true);
 
       try {
@@ -66,22 +63,21 @@ export default function ProductTable({ defaultResponse }: Props) {
           _limit: DEFAULT_LIMIT,
           _sort: "id",
           _order: "desc",
-          _expand: "category"
+          _expand: "category",
         });
 
         if (q) query.set("q", q);
         if (category) query.set("categoryId", category);
         if (status === "in-stock") query.set("availabilityStatus", "In Stock");
-        if (status === "low-stock") query.set("availabilityStatus", "Low Stock");
-        if (status === "out-of-stock") query.set("availabilityStatus", "Out of Stock");
-
-        
+        if (status === "low-stock")
+          query.set("availabilityStatus", "Low Stock");
+        if (status === "out-of-stock")
+          query.set("availabilityStatus", "Out of Stock");
 
         const response: ProductsResponse = await serverAPI.queryProducts(query);
 
         setProducts(response.products);
         setTotalPages(response.pages);
-
       } catch (error) {
         console.error("Failed to fetch products:", error);
       } finally {
@@ -91,7 +87,6 @@ export default function ProductTable({ defaultResponse }: Props) {
 
     fetchProducts();
   }, [page, q, category, status]); // Re-fetch whenever any parameter in URL changes
-
 
   /*
   const [products, setProducts] = useState<Product[]>([]);
@@ -122,7 +117,6 @@ export default function ProductTable({ defaultResponse }: Props) {
   */
   return (
     <div>
-
       <FilterBar />
 
       <div className="overflow-hidden bg-white ">
@@ -140,39 +134,32 @@ export default function ProductTable({ defaultResponse }: Props) {
             </thead>
 
             <tbody className="divide-y">
-
-            {loading ? (
+              {loading ? (
                 <tr className="dark:bg-slate-800 hover:bg-slate-50 dark:hover:bg-slate-950 border border-slate-200 dark:border-slate-800 transition">
                   <td className="px-6 py-4">
                     <p className="text-slate-500 py-8">Loading...</p>
                   </td>
                 </tr>
-            ) : (
+              ) : (
                 <>
                   {products.map((product) => (
-                      <ProductRow
-                          key={product.id}
-                          product={product}
-                          category={product.category!}
-                      />
+                    <ProductRow
+                      key={product.id}
+                      product={product}
+                      category={product.category!}
+                      categories={categories}
+                    />
                   ))}
                 </>
-            )}
-
+              )}
             </tbody>
           </table>
         </div>
 
         <div className=" flex justify-center items-center dark:bg-slate-950 bg-gray-50 p-4 border-b border-l border-r border-slate-200 dark:border-slate-800">
-
-          <Pagination
-              totalPages={totalPages}
-          />
-
+          <Pagination totalPages={totalPages} />
         </div>
-
       </div>
-
     </div>
   );
 }

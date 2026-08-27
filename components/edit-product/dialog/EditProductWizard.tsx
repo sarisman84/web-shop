@@ -13,6 +13,7 @@ export default function EditProductWizard(props: EditProductWizardProps) {
         onSuccess={() => {
           closeModal("edit-prod");
         }}
+        product={props.product}
       />{" "}
     </Modal>
   );

@@ -1,7 +1,7 @@
 "use server";
 
 import serverAPI from "@/server/api/serverAPI";
-import { CreateProductDesc } from "@/server/api/serverAPI.types";
+import { ProductDesc } from "@/server/api/serverAPI.types";
 import { revalidatePath } from "next/cache";
 import { FormState } from "./createProduct.type";
 
@@ -10,7 +10,7 @@ export async function createProduct(
   formData: FormData,
 ): Promise<FormState> {
   
-  const submission: CreateProductDesc = {
+  const submission: ProductDesc = {
     title: formData.get("title") as string,
     description: formData.get("description") as string,
     price: Number(formData.get("price")),

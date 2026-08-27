@@ -1,5 +1,5 @@
 import { Category, ProductsResponse } from "@/types/products";
-import { CreateProductDesc, emptyResponse } from "./serverAPI.types";
+import { ProductDesc, emptyResponse } from "./serverAPI.types";
 
 const serverAPI = {
   fetch: async function <T>(
@@ -43,7 +43,7 @@ const serverAPI = {
       throw error;
     }
   },
-  createProduct: async function (desc: CreateProductDesc): Promise<void> {
+  createProduct: async function (desc: ProductDesc): Promise<void> {
     const method = "POST";
     const body = JSON.stringify(desc); // Ensure formArgs is properly serialized to JSON
 
@@ -66,6 +66,17 @@ const serverAPI = {
 
   queryProducts: async function(query: URLSearchParams): Promise<ProductsResponse> {
     return serverAPI.fetch<ProductsResponse>(`/products?${query.toString()}`);
+  },
+
+  updateProduct: async function (id: number, desc: ProductDesc): Promise<void> {
+    const method = "PATCH";
+    const body = JSON.stringify(desc); // Ensure formArgs is properly serialized to JSON
+
+    return serverAPI.fetch(`/products/${id}`, {
+      method,
+      body,
+      headers: { "Content-Type": "application/json" },
+    });
   }
 };
 
