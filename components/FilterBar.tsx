@@ -44,7 +44,7 @@ export const FilterBar: React.FC = () => {
 
 
     return (
-        <div className="w-full p-3 bg-white border border-slate-200 rounded-lg shadow-sm mb-6 flex flex-col md:flex-row gap-3 items-center">
+        <div className="w-full p-3 bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-lg shadow-sm mb-6 flex flex-col md:flex-row gap-3 items-center">
             {/* Search Input */}
             <div className="flex-1 w-full">
                 <input
@@ -52,7 +52,7 @@ export const FilterBar: React.FC = () => {
                     placeholder="Search products..."
                     value={search}
                     onChange={(e) => setSearch(e.target.value)}
-                    className="w-full px-3 py-1.5 text-sm border border-slate-200 rounded-md focus:outline-none focus:ring-2 focus:ring-slate-400 focus:border-transparent text-slate-700 placeholder-slate-400"
+                    className="w-full px-3 py-1.5 text-sm border border-slate-200 dark:border-slate-800 rounded-md focus:outline-none focus:ring-2 focus:ring-slate-400 focus:border-transparent text-slate-700 dark:text-slate-300 placeholder-slate-400 dark:placeholder-slate-600"
                 />
             </div>
 
@@ -61,7 +61,7 @@ export const FilterBar: React.FC = () => {
                 <select
                     value={category}
                     onChange={(e) => setCategory(e.target.value)}
-                    className="w-full md:w-44 px-3 py-1.5 text-sm border border-slate-200 rounded-md focus:outline-none focus:ring-2 focus:ring-slate-400 focus:border-transparent text-slate-700 bg-white"
+                    className="w-full md:w-44 px-3 py-1.5 text-sm border border-slate-200 dark:border-slate-800 rounded-md focus:outline-none focus:ring-2 focus:ring-slate-400 focus:border-transparent text-slate-700 dark:text-slate-300 bg-slate-50 dark:bg-slate-950"
                 >
                     <option value="">All Categories</option>
                     <option value="1">Electronics</option>
@@ -75,7 +75,7 @@ export const FilterBar: React.FC = () => {
                 <select
                     value={status}
                     onChange={(e) => setStatus(e.target.value)}
-                    className="w-full md:w-36 px-3 py-1.5 text-sm border border-slate-200 rounded-md focus:outline-none focus:ring-2 focus:ring-slate-400 focus:border-transparent text-slate-700 bg-white"
+                    className="w-full md:w-36 px-3 py-1.5 text-sm border border-slate-200 dark:border-slate-800 rounded-md focus:outline-none focus:ring-2 focus:ring-slate-400 focus:border-transparent text-slate-700 dark:text-slate-300 bg-slate-50 dark:bg-slate-950"
                 >
                     <option value="">All Stock</option>
                     <option value="in-stock">In Stock</option>
@@ -87,7 +87,7 @@ export const FilterBar: React.FC = () => {
             {/* Filter Action Button */}
             <button
               onClick={handleApplyFilters}
-              className="w-full md:w-auto px-4 py-1.5 inline-flex items-center justify-center gap-2 text-sm font-medium border border-slate-200 rounded-md hover:bg-slate-50 transition-colors text-slate-700 focus:outline-none focus:ring-2 focus:ring-slate-400"
+              className="w-full md:w-auto px-4 py-1.5 inline-flex items-center justify-center gap-2 text-sm font-medium border border-slate-200 dark:border-slate-800 rounded-md hover:bg-slate-50 dark:hover:bg-slate-950 transition-colors text-slate-700 dark:text-slate-300 focus:outline-none focus:ring-2 focus:ring-slate-400 dark:focus:ring-slate-600"
             >
               <Filter className="w-3.5 h-3.5 fill-slate-700 stroke-slate-700" />
               Filter

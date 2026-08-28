@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import type { Product, ProductsResponse } from "@/types/products";
+import type { Product, ProductsResponse } from "@/types/types";
 import { useSearchParams } from "next/navigation";
 import ProductRow from "@/components/ProductRow";
 import Pagination from "@/components/Pagination";

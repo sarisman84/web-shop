@@ -1,6 +1,7 @@
 "use server";
 
-import { ProductsResponse } from "@/app/types";
+
+import { ProductsResponse } from "@/types/types";
 import { emptyResponse } from "./product-request.type";
 
 export default async function requestProductsAsync(
