@@ -1,5 +1,5 @@
 import { Category, ProductsResponse } from "@/types/products";
-import { ProductDesc, emptyResponse } from "./serverAPI.types";
+import { ProductDesc } from "./serverAPI.types";
 
 const serverAPI = {
   fetch: async function <T>(

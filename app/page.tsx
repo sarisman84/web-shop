@@ -1,11 +1,8 @@
-import type { ProductsResponse } from "@/types/products";
 import ProductTable from "@/components/ProductTable";
-import { API_URL, DEFAULT_LIMIT } from "@/lib/constants";
 import ProductHeader from "@/components/product-header/ProductHeader";
 import ProductWizard from "@/components/create-product/dialog/ProductWizard";
 import serverAPI from "@/server/api/serverAPI";
 import SummaryTracker from "@/components/SummaryTracker";
-import EditProductWizard from "@/components/edit-product/dialog/EditProductWizard";
 
 export default async function Home() {
   // const response: ProductsResponse = await fetch(
