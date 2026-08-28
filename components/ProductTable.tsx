@@ -14,31 +14,8 @@ interface ProductTableProps {
   categories: Category[];
 }
 
-/*
-export default function ProductTable({ defaultResponse }: Props) {
 
-  // Define use states for the page and response
-  const [page, setPage] = useState(1);
-  const [response, setResponse] = useState<ProductsResponse>(defaultResponse);
-
-  // Update the reponse state by fetching data from the server when the user interacts with things
-  useEffect(() => {
-    // Define a fetch function that is async
-    async function fetchProducts() {
-      const response: ProductsResponse = await fetch(
-        `${API_URL}/products/?_page=${page}&_limit=${defaultLimit}&_sort=id&_order=desc&_expand=category`,
-      ).then((res) => res.json());
-
-      setResponse(response);
-    }
-
-    // Call it
-    fetchProducts();
-  }, [page, setResponse]);
-*/
 export default function ProductTable({ categories }: ProductTableProps) {
-  // Define use states for the page and response
-  // const [page, setPage] = useState(1);
 
   const searchParams = useSearchParams();
 
@@ -88,33 +65,6 @@ export default function ProductTable({ categories }: ProductTableProps) {
     fetchProducts();
   }, [page, q, category, status]); // Re-fetch whenever any parameter in URL changes
 
-  /*
-  const [products, setProducts] = useState<Product[]>([]);
-  const [currentPage, setCurrentPage] = useState<number>(1);
-  const [totalPages, setTotalPages] = useState<number>(1);
-  const [loading, setLoading] = useState<boolean>(false);
-
-  const fetchProducts = async (page: number) => {
-    setLoading(true);
-    try {
-
-     const response: ProductsResponse = await fetch(
-            `${API_URL}/products/?_page=${page}&_limit=${DEFAULT_LIMIT}&_sort=id&_order=desc&_expand=category`,
-        ).then((res) => res.json());
-
-      setProducts(response.products);
-      setTotalPages(response.pages);
-    } catch (error) {
-      console.error("Failed to fetch items:", error);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  useEffect(() => {
-    fetchProducts(currentPage);
-  }, [currentPage]);
-  */
   return (
     <div>
       <FilterBar />
@@ -160,6 +110,7 @@ export default function ProductTable({ categories }: ProductTableProps) {
           <Pagination totalPages={totalPages} />
         </div>
       </div>
+
     </div>
   );
 }
