@@ -63,16 +63,16 @@ export default function Pagination ({
         "border-slate-600 bg-slate-600 text-white shadow-sm";
     */
     const baseStyles =
-        "inline-flex items-center justify-center w-10 h-10 text-sm font-medium transition-colors border rounded-md focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-1";
+        "inline-flex items-center justify-center w-10 h-10 text-sm font-medium transition-colors border rounded-md focus:outline-none focus:ring-2 focus:ring-slate-400 dark:focus-slate-600 focus:ring-offset-1";
 
     const defaultStyles =
-        "border-slate-200 bg-white text-slate-500 hover:bg-slate-50 hover:text-slate-700";
+        "border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 text-slate-500 hover:bg-slate-50 hover:text-slate-700";
 
     const activeStyles =
-        "border-slate-600 bg-slate-600 text-white shadow-sm pointer-events-none";
+        "border-slate-600 dark:border-slate-400 bg-slate-600 dark:bg-slate-400 text-slate-50 dark:text-slate-950 shadow-sm pointer-events-none";
 
     const disabledStyles =
-        "border-slate-200 bg-white text-slate-500 opacity-80 pointer-events-none cursor-not-allowed";
+        "border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 text-slate-500 opacity-80 pointer-events-none cursor-not-allowed";
 
     return (
         <nav className="flex items-center justify-center gap-1.5 py-4">
@@ -83,11 +83,11 @@ export default function Pagination ({
                     className={`${baseStyles} ${defaultStyles}`}
                     aria-label="First page"
                 >
-                    <ChevronsLeft className="w-4 h-4 text-slate-400" />
+                    <ChevronsLeft className="w-4 h-4 text-slate-400 dark:text-slate-600" />
                 </Link>
             ) : (
                 <span className={`${baseStyles} ${disabledStyles}`}>
-          <ChevronsLeft className="w-4 h-4 text-slate-300" />
+          <ChevronsLeft className="w-4 h-4 text-slate-300 dark:text-slate-700" />
         </span>
             )}
 
@@ -98,11 +98,11 @@ export default function Pagination ({
                     className={`${baseStyles} ${defaultStyles}`}
                     aria-label="Previous page"
                 >
-                    <ChevronLeft className="w-4 h-4 text-slate-400" />
+                    <ChevronLeft className="w-4 h-4 text-slate-400 dark:text-slate-600" />
                 </Link>
             ) : (
                 <span className={`${baseStyles} ${disabledStyles}`}>
-          <ChevronLeft className="w-4 h-4 text-slate-300" />
+          <ChevronLeft className="w-4 h-4 text-slate-300 dark:text-slate-700" />
         </span>
             )}
 
@@ -130,11 +130,11 @@ export default function Pagination ({
                     className={`${baseStyles} ${defaultStyles}`}
                     aria-label="Next page"
                 >
-                    <ChevronRight className="w-4 h-4 text-slate-600" />
+                    <ChevronRight className="w-4 h-4 text-slate-600 dark:text-slate-400" />
                 </Link>
             ) : (
                 <span className={`${baseStyles} ${disabledStyles}`}>
-          <ChevronRight className="w-4 h-4 text-slate-300" />
+          <ChevronRight className="w-4 h-4 text-slate-300 dark:text-slate-700" />
         </span>
             )}
 
@@ -145,11 +145,11 @@ export default function Pagination ({
                     className={`${baseStyles} ${defaultStyles}`}
                     aria-label="Last page"
                 >
-                    <ChevronsRight className="w-4 h-4 text-slate-600" />
+                    <ChevronsRight className="w-4 h-4 text-slate-600 dark:text-slate-400" />
                 </Link>
             ) : (
                 <span className={`${baseStyles} ${disabledStyles}`}>
-          <ChevronsRight className="w-4 h-4 text-slate-300" />
+          <ChevronsRight className="w-4 h-4 text-slate-300 dark:text-slate-700" />
         </span>
             )}
         </nav>
