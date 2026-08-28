@@ -1,4 +1,5 @@
-import { ProductsResponse } from "@/app/types";
+import { ProductsResponse } from "@/types/types";
+
 
 
 export interface ProductDesc {

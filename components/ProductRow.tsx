@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
 import { Pencil, Trash2 } from "lucide-react";
-import { Product, Category } from "@/types/products";
+import { Product, Category } from "@/types/types";
 import { useModal } from "@/utils/components/modal/provider/ModalProvider";
 import EditProductWizard from "./edit-product/dialog/EditProductWizard";
 

@@ -1,4 +1,4 @@
-import { Category } from "@/types/products";
+import { Category } from "@/types/types";
 import { Product } from "@/types/types";
 
 export interface EditProductWizardProps {

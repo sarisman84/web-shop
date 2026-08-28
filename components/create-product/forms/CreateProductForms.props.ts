@@ -1,4 +1,5 @@
-import { Category } from "@/app/types";
+import { Category } from "@/types/types";
+
 
 export interface CreateProductFormsProps {
   categories: Category[];
