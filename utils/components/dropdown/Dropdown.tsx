@@ -18,6 +18,7 @@ type DropdownProps = {
   name?: string;
   options: DropdownOption[];
   selected?: DropdownOption | null;
+  defaultSelected?: DropdownOption |  null;
   onChange?: (option: DropdownOption | null) => void;
   invalid?: boolean;
   required?: boolean;
@@ -25,7 +26,7 @@ type DropdownProps = {
 
 export default function Dropdown(props: DropdownProps) {
   const [query, setQuery] = useState("");
-  const { options, selected, onChange } = props;
+  const { options, selected,defaultSelected, onChange } = props;
 
   const filteredOptions =
     query === ""
@@ -38,6 +39,7 @@ export default function Dropdown(props: DropdownProps) {
     <Combobox
       name={props.name}
       value={selected}
+      defaultValue={defaultSelected}
       onChange={onChange}
       invalid={props.invalid}
     >

@@ -1,6 +1,6 @@
 "use server";
 
-import {ProductsResponse} from "@/types/types";
+import {ProductsResponse} from "@/types/products";
 
 const API_URL = "http://localhost:4000";
 const defaultLimit = "6";

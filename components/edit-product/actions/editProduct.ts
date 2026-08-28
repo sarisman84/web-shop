@@ -1,15 +1,15 @@
 "use server";
 
+import { FormState } from "@/components/create-product/actions/createProduct.type";
 import serverAPI from "@/server/api/serverAPI";
 import { ProductDesc } from "@/server/api/serverAPI.types";
 import { revalidatePath } from "next/cache";
-import { FormState } from "./createProduct.type";
 
-export async function createProduct(
+export default async function editProduct(
+  id: number,
   prevState: FormState,
   formData: FormData,
 ): Promise<FormState> {
-  
   const submission: ProductDesc = {
     title: formData.get("title") as string,
     description: formData.get("description") as string,
@@ -51,7 +51,8 @@ export async function createProduct(
     };
   }
 
-  await serverAPI.createProduct(submission);
+  //   await serverAPI.createProduct(submission);
+  await serverAPI.updateProduct(id, submission);
 
   revalidatePath("/");
 
