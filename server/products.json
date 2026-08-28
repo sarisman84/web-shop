@@ -11432,9 +11432,9 @@
     },
     {
       "id": 189,
-      "title": "Red Shoes",
+      "title": "Dimitri's Red Shoes",
       "description": "The Red Shoes make a bold statement with their vibrant red color. Whether for a party or a casual outing, these shoes add a pop of color and style to your wardrobe.",
-      "price": 34.99,
+      "price": 67.99,
       "discountPercentage": 17.69,
       "rating": 3.25,
       "stock": 7,
@@ -11491,7 +11491,7 @@
         "https://cdn.dummyjson.com/product-images/womens-shoes/red-shoes/4.webp"
       ],
       "thumbnail": "https://cdn.dummyjson.com/product-images/womens-shoes/red-shoes/thumbnail.webp",
-      "categoryId": 23
+      "categoryId": 9
     },
     {
       "id": 190,
@@ -11557,7 +11557,7 @@
     },
     {
       "id": 191,
-      "title": "Rolex Cellini Moonphase",
+      "title": "Dimitri's Cellini Moonphase",
       "description": "The Rolex Cellini Moonphase watch is a masterpiece of horology. Featuring a moon phase complication, it showcases the craftsmanship and elegance that Rolex is renowned for.",
       "price": 15999.99,
       "discountPercentage": 4.11,
@@ -11803,146 +11803,6 @@
       ],
       "thumbnail": "https://cdn.dummyjson.com/product-images/womens-watches/women's-wrist-watch/thumbnail.webp",
       "categoryId": 24
-    },
-    {
-      "title": "Test 1",
-      "description": "Test 2",
-      "price": 123,
-      "brand": "Test 3",
-      "categoryId": 9,
-      "thumbnail": "https://fastly.picsum.photos/id/237/536/354.jpg?hmac=i0yVXW1ORpyCZpQ-CknuyV-jbtU7_x9EBQVhvT5aRr0",
-      "meta": {
-        "createdAt": "2026-08-21T08:02:08.260Z",
-        "updatedAt": "2026-08-21T08:02:08.260Z"
-      },
-      "id": 195,
-      "sku": "MEN-TES-TES-195"
-    },
-    {
-      "title": "Test 2",
-      "description": "Test 3",
-      "price": 123,
-      "brand": "Test 4",
-      "categoryId": 10,
-      "thumbnail": "https://picsum.photos/200",
-      "meta": {
-        "createdAt": "2026-08-21T08:06:16.888Z",
-        "updatedAt": "2026-08-21T08:06:16.888Z"
-      },
-      "id": 196,
-      "sku": "MEN-TES-TES-196"
-    },
-    {
-      "title": "Test 1",
-      "description": "Test 2",
-      "price": 123,
-      "brand": "Test 3",
-      "categoryId": 9,
-      "thumbnail": "https://fastly.picsum.photos/id/237/536/354.jpg?hmac=i0yVXW1ORpyCZpQ-CknuyV-jbtU7_x9EBQVhvT5aRr0",
-      "meta": {
-        "createdAt": "2026-08-21T11:27:00.228Z",
-        "updatedAt": "2026-08-21T11:27:00.228Z"
-      },
-      "id": 197,
-      "sku": "MEN-TES-TES-197"
-    },
-    {
-      "title": "Test 5",
-      "description": "Test 2",
-      "price": 1234,
-      "brand": "Test 4",
-      "categoryId": 2,
-      "thumbnail": "https://picsum.photos/200",
-      "meta": {
-        "createdAt": "2026-08-24T06:50:02.041Z",
-        "updatedAt": "2026-08-24T06:50:02.041Z"
-      },
-      "id": 198,
-      "sku": "FRA-TES-TES-198"
-    },
-    {
-      "title": "Test 5",
-      "description": "Test 3",
-      "price": 642,
-      "brand": "Test 10",
-      "categoryId": 3,
-      "thumbnail": "https://picsum.photos/200",
-      "meta": {
-        "createdAt": "2026-08-25T14:47:02.489Z",
-        "updatedAt": "2026-08-25T14:47:02.489Z"
-      },
-      "id": 199,
-      "sku": "FUR-TES-TES-199"
-    },
-    {
-      "title": "Test 5",
-      "description": "adwada",
-      "price": 1231234,
-      "brand": "dawdawd",
-      "categoryId": 17,
-      "thumbnail": "https://picsum.photos/200",
-      "meta": {
-        "createdAt": "2026-08-25T15:37:21.184Z",
-        "updatedAt": "2026-08-25T15:37:21.184Z"
-      },
-      "id": 200,
-      "sku": "TAB-DAW-TES-200"
-    },
-    {
-      "title": "Test 1",
-      "description": "Test 3",
-      "price": 1234,
-      "brand": "Test 10",
-      "categoryId": 16,
-      "thumbnail": "https://picsum.photos/200",
-      "meta": {
-        "createdAt": "2026-08-26T07:24:24.188Z",
-        "updatedAt": "2026-08-26T07:24:24.188Z"
-      },
-      "id": 201,
-      "sku": "SUN-TES-TES-201"
-    },
-    {
-      "title": "Some random prod",
-      "description": "Yes :)",
-      "price": 10000,
-      "brand": "Lexicon",
-      "categoryId": 15,
-      "thumbnail": "https://picsum.photos/200",
-      "meta": {
-        "createdAt": "2026-08-26T07:24:46.008Z",
-        "updatedAt": "2026-08-26T07:24:46.008Z"
-      },
-      "id": 202,
-      "sku": "SPO-LEX-SOM-202"
-    },
-    {
-      "title": "Patrik's Product :)",
-      "description": "https://picsum.photos/200",
-      "price": 12345,
-      "brand": "Lexicon",
-      "categoryId": 2,
-      "thumbnail": "https://picsum.photos/200",
-      "meta": {
-        "createdAt": "2026-08-26T07:44:59.735Z",
-        "updatedAt": "2026-08-26T07:44:59.735Z"
-      },
-      "id": 203,
-      "sku": "FRA-LEX-PAT-203"
-    },
-    {
-      "title": "Test 1",
-      "description": "Test 2",
-      "price": 123,
-      "brand": "Test 3",
-      "categoryId": 16,
-      "thumbnail": "https://picsum.photos/200",
-      "meta": {
-        "createdAt": "2026-08-26T07:51:14.424Z",
-        "updatedAt": "2026-08-26T07:51:14.424Z"
-      },
-      "id": 204,
-      "sku": "SUN-TES-TES-204"
     }
   ],
   "categories": [
